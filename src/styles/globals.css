@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Buyan';
+  src: url('/fonts/Buyan/BuyanBold.ttf');
+  src: url('/fonts/Buyan/BuyanRegular.ttf');
+  src: url('/fonts/Buyan/BuyanThin.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Doloman Pavljenko';
+  src: url('/fonts/Doloman Pavljenko/DolomanPavljenko.otf');
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
