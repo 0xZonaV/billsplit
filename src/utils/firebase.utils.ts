@@ -16,10 +16,11 @@ import {
     QueryDocumentSnapshot,
     collection,
     getDocs,
-    query
+    query, updateDoc
 } from "@firebase/firestore";
 import firebase from "firebase/compat";
 import {MenuItem} from "@/store/menu/menu-types";
+import {getSnapshotFromUserAuth} from "@/store/user/user-saga";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAO155af5IBhclOn437Q0jQZy-7ho69byM",
@@ -128,6 +129,8 @@ export const getCurrentUser = (): Promise<User | null> => {
 
 
 
+
+
 export const getRestaurantMenu  = async (restaurant: string): Promise<MenuItem[]> => {
     const collectionRef = collection(db, ('/restaurant/' + restaurant + '/menu') );
     const q = query(collectionRef);
@@ -139,24 +142,44 @@ export const getRestaurantMenu  = async (restaurant: string): Promise<MenuItem[]
         (docSnapshot) => docSnapshot.data() as MenuItem
     );
 }
-export const getUserOrder = async (
+
+
+export const updateUserOrder = async (
     userAuth: User,
+    additionalInformation = {} as AdditionalInformation,
     nameOfRestaurant: string,
     tableNum: string,
-    ): Promise<itemsInOrder[]> => {
-    const collectionRef = collection(db, (`/restaurant/${nameOfRestaurant}/table/${tableNum}/users/${userAuth.uid}/userOrder`) );
+    idOfItemToAdd: number,
+    amountOfItem: number,
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
+    if (!userAuth) return;
 
-    console.log(collectionRef);
+    const userOrderRef = doc(db, `/restaurant/${nameOfRestaurant}/table/${tableNum}/users/${userAuth.uid}`);
 
-    const q = query(collectionRef);
+    const orderSnapshot = await getDoc(userOrderRef);
 
-    const querySnapshot = await getDocs(q);
+    if (!orderSnapshot.exists()) return;
+
+    const user = await createUserDocumentFromAuth(userAuth, {}, nameOfRestaurant, tableNum);
+
+    if (user) {
+
+        const userData = user.data();
+
+        const userItems = userData.userOrder.items;
+
+        userItems[idOfItemToAdd-1] = {
+            id: idOfItemToAdd,
+            itemsCount: (userData.userOrder.items[idOfItemToAdd-1].itemsCount + amountOfItem),
+        }
 
 
-
-    return querySnapshot.docs.map((docSnapshot) => {
-            console.log(docSnapshot.data())
-        return docSnapshot.data() as itemsInOrder
+        const userOrder: UserOrder = {
+            items: userItems
+        }
+        
+        await updateDoc(userOrderRef, {...userData, userOrder});
     }
-    );
+
+    return orderSnapshot as QueryDocumentSnapshot<UserData>;
 }
