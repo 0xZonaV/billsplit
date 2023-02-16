@@ -20,7 +20,6 @@ import {
 } from "@firebase/firestore";
 import firebase from "firebase/compat";
 import {MenuItem} from "@/store/menu/menu-types";
-import {getSnapshotFromUserAuth} from "@/store/user/user-saga";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAO155af5IBhclOn437Q0jQZy-7ho69byM",
@@ -177,7 +176,7 @@ export const updateUserOrder = async (
         const userOrder: UserOrder = {
             items: userItems
         }
-        
+
         await updateDoc(userOrderRef, {...userData, userOrder});
     }
 
