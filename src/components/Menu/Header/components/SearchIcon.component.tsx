@@ -1,10 +1,12 @@
-import SearchIcon from "../../../../../public/searchIcon.svg";
-import {SearchIconContainer} from "@/components/Menu/Header/styles/CartIcon.styles";
+import BackIcon from "../../../../../public/BackIcon.svg";
+import {BackButtonEllipse, SearchIconContainer} from "@/components/Menu/Header/styles/CartIcon.styles";
 
 const SearchIconComponent = () => {
     return(
         <SearchIconContainer item xs={3}>
-            <SearchIcon />
+            <BackButtonEllipse>
+                <BackIcon />
+            </BackButtonEllipse>
         </SearchIconContainer>
     )
 }

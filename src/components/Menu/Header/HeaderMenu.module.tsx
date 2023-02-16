@@ -10,9 +10,9 @@ const HeaderMenuModule: FC<{nameOfRestaurant: string}> = ({nameOfRestaurant}) =>
     return(
         <HeaderMenuStyle>
             <Grid container sx={{ padding: "10% 5% 0% 5%" }}>
-                <CartIcon />
-                <HeaderMenuRestTitle nameOfRestaurant={nameOfRestaurant} />
                 <SearchIconComponent />
+                <HeaderMenuRestTitle nameOfRestaurant={nameOfRestaurant} />
+                <CartIcon />
             </Grid>
 
             <Grid container spacing={2} sx={{ padding: "5% 3% 5% 3%" }}>

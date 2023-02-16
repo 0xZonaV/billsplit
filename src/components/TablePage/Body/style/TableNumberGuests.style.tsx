@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import AvatarPeople from "../../../../../public/AvatarPeople.svg";
 export const TableNumberGuestsTitle = styled.div`
   font-family: 'Doloman Pavljenko';
   font-style: normal;
@@ -14,7 +13,6 @@ export const TableNumberGuestsTitle = styled.div`
 
 export const TableNumberGuestsAvatarEllipse = styled.div`
     border-radius: 50%;
-    background-color: #5DF17E;
     display: flex;
     align-items: center;
     justify-content: center;

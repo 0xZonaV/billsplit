@@ -1,7 +1,9 @@
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner.component";
+
 const MenuWaiterIndexPage = () => {
     return(
         <>
-            Waiter Menu
+            <LoadingSpinner />
         </>
     );
 }
