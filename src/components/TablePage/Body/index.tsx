@@ -12,7 +12,7 @@ type TableNumberPageBodyProps = {
 
 const TableNumberPageBody:FC<TableNumberPageBodyProps> = ({ tableNumber, user }) => {
     return(
-        <Box sx={{ padding: "10% 10% 20% 10%" }}>
+        <Box sx={{ padding: "10% 10% 0% 10%" }}>
             <TableNumberTitle tableNumber={tableNumber} />
             <Box sx={{ padding: "10% 3% 10% 3%" }}>
                 <TableNumberGuestsTitle>

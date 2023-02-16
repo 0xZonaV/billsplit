@@ -6,6 +6,8 @@ import {NextPage} from "next";
 import TableNumberHeader from "@/components/TablePage/Header/TableNumberHeader.component";
 import TableNumberPageBody from "@/components/TablePage/Body";
 import RegistrationForm from "@/components/RegistartionForm/RegistrationForm.component";
+import WaiterCardModule from "@/components/TablePage/WaiterCard";
+import ToMenuButton from "@/components/TablePage/ToMenuButton/ToMenuButton.component";
 
 const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaurant}) => {
 
@@ -25,6 +27,8 @@ const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaur
             <>
                 <TableNumberHeader restaurantName={nameOfRestaurant as string} />
                 <TableNumberPageBody tableNumber={numberOfTable as string} user={user} />
+                <WaiterCardModule />
+                <ToMenuButton />
             </>
         )
     }
