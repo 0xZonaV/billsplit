@@ -1,4 +1,4 @@
-import SearchIcon from "../../../../public/searchIcon.svg";
+import SearchIcon from "../../../../../public/searchIcon.svg";
 import {SearchIconContainer} from "@/components/Menu/Header/styles/CartIcon.styles";
 
 const SearchIconComponent = () => {

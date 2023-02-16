@@ -1,10 +1,10 @@
-import CartIcon from "@/components/Menu/Header/CartIcon.component";
+import CartIcon from "@/components/Menu/Header/components/CartIcon.component";
 import {FC} from "react";
-import HeaderMenuRestTitle from "@/components/Menu/Header/HeaderMenuRestTitle.component";
+import HeaderMenuRestTitle from "@/components/Menu/Header/components/HeaderMenuRestTitle.component";
 import {HeaderMenuStyle} from "@/components/Menu/Header/styles/Module.style";
 import {Grid} from "@mui/material";
-import SearchIconComponent from "@/components/Menu/Header/SearchIcon.component";
-import HeaderMenuButton from "@/components/Menu/Header/HeaderMenuButton.component";
+import SearchIconComponent from "@/components/Menu/Header/components/SearchIcon.component";
+import HeaderMenuButton from "@/components/Menu/Header/components/HeaderMenuButton.component";
 
 const HeaderMenuModule: FC<{nameOfRestaurant: string}> = ({nameOfRestaurant}) => {
     return(

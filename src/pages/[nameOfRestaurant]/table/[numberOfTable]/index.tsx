@@ -3,14 +3,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentUser} from "@/store/user/user-selector";
 import {
     GoogleSignInButton,
-    TablePageLoginTitleComponent
-} from "@/components/TablePage/TablePageLoginTitle.component";
-import {Button} from "@mui/material";
+    TableNumberIndexPageStyle
+} from "@/components/TablePage/TableNumberIndexPage.style";
 import {googleSignInStart, signOutStart} from "@/store/user/user-action";
 import {Box} from "@mui/system";
 import {AppGeneralProps} from "../../../../../@types";
 import {NextPage} from "next";
 import GoogleIcon from "../../../../../public/googleIcon.svg";
+import TableNumberHeader from "@/components/TablePage/Header/TableNumberHeader.component";
+import TableNumberPageBody from "@/components/TablePage/Body";
 
 const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaurant}) => {
     const dispatch = useDispatch();
@@ -39,9 +40,9 @@ const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaur
                 alignItems: 'center',
             }}
             >
-                <TablePageLoginTitleComponent>
+                <TableNumberIndexPageStyle>
                     Добро Пожаловать!
-                </TablePageLoginTitleComponent>
+                </TableNumberIndexPageStyle>
                 <GoogleSignInButton startIcon={<GoogleIcon />} onClick={logGoogleUser} variant="text">
                         Войти с помощью Google
                 </GoogleSignInButton>
@@ -50,8 +51,8 @@ const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaur
     } else {
         return (
             <>
-                You Are Already Login In
-                <Button onClick={logOut}>Log out</Button>
+                <TableNumberHeader restaurantName={nameOfRestaurant as string} />
+                <TableNumberPageBody tableNumber={numberOfTable as string} user={user} />
             </>
         )
     }

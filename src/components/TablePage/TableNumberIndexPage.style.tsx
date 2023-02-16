@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {Button} from "@mui/material";
 
-export const TablePageLoginTitleComponent = styled.div`
+export const TableNumberIndexPageStyle = styled.div`
   font-family: 'Buyan';
   font-style: normal;
   font-weight: bold;
@@ -11,11 +11,10 @@ export const TablePageLoginTitleComponent = styled.div`
   text-transform: capitalize;
   align-content: center;
   
-  margin-top: 30%;
+  margin-top: 80%;
   
   color: #000000;
 `
-
 export const GoogleSignInButton = styled(Button)`
     && {
       background: linear-gradient(89.74deg, #BADCFF 8.19%, #ACB4FF 120.64%);
@@ -23,7 +22,7 @@ export const GoogleSignInButton = styled(Button)`
       width: 304.6px;
       height: 54px;
       
-      margin-top: 35%;
+      margin-top: 25%;
 
       text-decoration: none;
       white-space: nowrap;

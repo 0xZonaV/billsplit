@@ -4,8 +4,8 @@ import UserCartItemsRender from "@/components/UserCart/UserCart.functions";
 import {Button} from "@mui/material";
 import {setCartItems} from "@/store/cart/cart-action";
 import {addItemStart} from "@/store/user/user-action";
-import {AppGeneralProps} from "@/pages/[nameOfRestaurant]/table/[numberOfTable]";
 import {NextPage} from "next";
+import {AppGeneralProps} from "../../../../../../@types";
 
 const UserCart:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
     const dispatch = useDispatch();
