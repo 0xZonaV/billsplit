@@ -1,9 +1,13 @@
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner.component";
+import {OrderCompletedBackground} from "@/components/OrderCompleteScreen/OrderComplite.style";
+
 
 const MenuWaiterIndexPage = () => {
+
     return(
         <>
-            <LoadingSpinner />
+            <OrderCompletedBackground>
+                Спасибо
+            </OrderCompletedBackground>
         </>
     );
 }

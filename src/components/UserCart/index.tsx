@@ -1,6 +1,8 @@
 import UserCartHeader from "@/components/UserCart/components/UserCartHeader.component";
 import {Box} from "@mui/system";
 import UserCartBodyComponent from "@/components/UserCart/components/UserCartBody.component";
+import UserCartOrderButton from "@/components/UserCart/components/UserCartOrderButton.component";
+import UserCartAddCommentsButton from "@/components/UserCart/components/UserCartAddCommentsButton.component";
 
 const UserCartModule = () => {
 
@@ -16,6 +18,8 @@ const UserCartModule = () => {
         >
             <UserCartHeader />
             <UserCartBodyComponent />
+            <UserCartOrderButton />
+            <UserCartAddCommentsButton />
         </Box>
     )
 }

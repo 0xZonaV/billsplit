@@ -1,13 +1,9 @@
 import {FC} from "react";
-import {
-    UserCartChangeQuantityButtonBox,
-    UserCartChangeQuantityButtonStyle
-} from "@/components/UserCart/styles/UserCartChangeQuantityButton.style";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCartItems} from "@/store/cart/cart-selector";
 import {addItemToCart, decreaseItemQuantity} from "@/store/cart/cart-action";
 import {CartItemType} from "@/store/cart/cart-types";
-
+import Arrow from "../../../../public/GreenArrowLeft.svg";
 const UserCartChangeQuantityButton:FC<{ item: CartItemType }> = ({ item }) => {
     const dispatch = useDispatch();
 
@@ -22,11 +18,11 @@ const UserCartChangeQuantityButton:FC<{ item: CartItemType }> = ({ item }) => {
     }
 
     return(
-        <UserCartChangeQuantityButtonBox>
-            <UserCartChangeQuantityButtonStyle onClick={DecreaseItemOnClick} />
-            {item.quantity}
-            <UserCartChangeQuantityButtonStyle style={{ transform: "scaleX(-1)" }} onClick={AddItemOnClick} />
-        </UserCartChangeQuantityButtonBox>
+        <>
+            <Arrow onClick={DecreaseItemOnClick} style={{ marginRight: "4px" }} />
+                {item.quantity}
+            <Arrow style={{ transform: "scaleX(-1)", marginLeft: "4px" }} onClick={AddItemOnClick} />
+        </>
     )
 }
 

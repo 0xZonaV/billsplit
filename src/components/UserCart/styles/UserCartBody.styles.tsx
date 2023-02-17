@@ -1,15 +1,6 @@
 import styled from "styled-components";
-import {Grid, TableCell, TableRow} from "@mui/material";
-import BillBackground from "../../../../public/BillBackGround.svg"
+import {TableCell} from "@mui/material";
 
-export const UserCartBodyBox = styled.div`
-
-    margin-left: 25px;
-    margin-right: 25px;
-    align-items: flex-start;
-    display: flex;
-    justify-content: center;
-`
 
 export const UserCartBodyBackground = styled.div`
     background-image: url("/BillBackGround.svg");
@@ -21,7 +12,7 @@ export const UserCartBodyBackground = styled.div`
     margin-top: 10%;
 
     align-items: flex-start;
-    display: flex;
+    display: block;
     justify-content: center;
 `
 
@@ -35,4 +26,18 @@ export const TableTextStyle = styled(TableCell)`
     border: 0;
     color: #33394B;
   }
+`
+
+export const TotalCost = styled.div`
+  font-family: 'Doloman Pavljenko';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 19px;
+  border: 0;
+  color: #33394B;
+  justify-content: left;
+  display: flex;
+  
+  padding: 0 0 0 60px;
 `
