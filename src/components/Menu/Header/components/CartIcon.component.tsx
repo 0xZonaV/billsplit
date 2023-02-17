@@ -11,8 +11,10 @@ import {
 const CartIcon: FC = () => {
     const Router = useRouter();
 
+    const { nameOfRestaurant, numberOfTable } = Router.query;
+
     const redirectToCart = () => {
-        Router.push("/user/cart");
+        Router.push(`/${nameOfRestaurant}/table/${numberOfTable}/user/cart`);
     }
     const allQuantity = useSelector(selectCartQuantity);
 

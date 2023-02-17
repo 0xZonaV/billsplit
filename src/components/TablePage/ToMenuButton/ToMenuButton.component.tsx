@@ -1,8 +1,16 @@
 import {Button} from "@mui/material";
 import BookIcon from "../../../../public/bookIcon.svg"
 import {Box} from "@mui/system";
+import {useRouter} from "next/router";
 
 const ToMenuButton = () => {
+    const Router = useRouter();
+
+    const { nameOfRestaurant, numberOfTable } = Router.query;
+    const ToMenuOnClick = async () => {
+        await Router.push(`/${nameOfRestaurant}/table/${numberOfTable}/menu`);
+    }
+
     return(
         <Box sx={{
             display: 'flex',
@@ -29,6 +37,7 @@ const ToMenuButton = () => {
                 marginTop: '30%',
             }}
                     startIcon={<BookIcon />}
+                    onClick={ToMenuOnClick}
             >
                 Меню ресторана
             </Button>

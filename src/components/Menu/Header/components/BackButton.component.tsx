@@ -3,13 +3,11 @@ import {BackButtonEllipse, SearchIconContainer} from "@/components/Menu/Header/s
 import {useRouter} from "next/router";
 import {FC} from "react";
 
-const SearchIconComponent:FC = () => {
+const BackButtonComponent:FC<{ pushToUrl: string }> = ({pushToUrl}) => {
     const Router = useRouter();
 
-    const {nameOfRestaurant, numberOfTable} = Router.query;
-
     const RouteBackOnClick = () => {
-        Router.push(`/${nameOfRestaurant}/table/${numberOfTable}`)
+        Router.push(pushToUrl);
     }
 
     return(
@@ -21,4 +19,4 @@ const SearchIconComponent:FC = () => {
     )
 }
 
-export default SearchIconComponent;
+export default BackButtonComponent;

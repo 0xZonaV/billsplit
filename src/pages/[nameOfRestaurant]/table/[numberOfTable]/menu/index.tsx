@@ -20,7 +20,7 @@ const MenuIndexPage: NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTab
         if (!isMenuLoading) {
             return (
                 <>
-                    <HeaderMenuModule nameOfRestaurant={nameOfRestaurant as string} />
+                    <HeaderMenuModule />
                     <ItemCardsRender menu={menu} cart={cart}/>
                 </>
             )

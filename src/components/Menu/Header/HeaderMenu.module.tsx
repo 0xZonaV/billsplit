@@ -3,15 +3,21 @@ import {FC} from "react";
 import HeaderMenuRestTitle from "@/components/Menu/Header/components/HeaderMenuRestTitle.component";
 import {HeaderMenuStyle} from "@/components/Menu/Header/styles/Module.style";
 import {Grid} from "@mui/material";
-import SearchIconComponent from "@/components/Menu/Header/components/SearchIcon.component";
+import BackButtonComponent from "@/components/Menu/Header/components/BackButton.component";
 import HeaderMenuButton from "@/components/Menu/Header/components/HeaderMenuButton.component";
+import {useRouter} from "next/router";
 
-const HeaderMenuModule: FC<{nameOfRestaurant: string}> = ({nameOfRestaurant}) => {
+const HeaderMenuModule: FC = () => {
+
+    const Router = useRouter();
+
+    const { nameOfRestaurant, numberOfTable } = Router.query;
+
     return(
         <HeaderMenuStyle>
             <Grid container sx={{ padding: "10% 5% 0% 5%" }}>
-                <SearchIconComponent />
-                <HeaderMenuRestTitle nameOfRestaurant={nameOfRestaurant} />
+                <BackButtonComponent pushToUrl={`/${nameOfRestaurant}/table/${numberOfTable}`} />
+                <HeaderMenuRestTitle nameOfRestaurant={nameOfRestaurant as string} />
                 <CartIcon />
             </Grid>
 
