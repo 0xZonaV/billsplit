@@ -11,12 +11,11 @@ import ToMenuButton from "@/components/TablePage/ToMenuButton/ToMenuButton.compo
 
 const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaurant}) => {
 
+    const user = useSelector(selectCurrentUser);
 
     // const logOut = () => {
     //     dispatch(signOutStart());
     // }
-
-    const user = useSelector(selectCurrentUser);
 
     if (user == null) {
         return(

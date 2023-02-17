@@ -19,7 +19,7 @@ export const rootReducer =(state: RootReducerType | undefined, action: AnyAction
             const combinedReducer = combineReducers({
                 menu: menuReducer,
                 user: userReducer,
-                cart: cartReducer
+                cart: cartReducer,
             })
             return combinedReducer(state, action);
         }
