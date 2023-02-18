@@ -68,6 +68,12 @@ const UserCartModule = () => {
         return(
             <UserCartOrderSendWindow routeOnClick={closeOrderOnClick} />
         )
+    } else {
+        return (
+            <>
+                Error
+            </>
+        )
     }
 }
 
