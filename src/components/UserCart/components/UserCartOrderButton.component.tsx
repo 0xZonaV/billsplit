@@ -1,6 +1,7 @@
 import {Button} from "@mui/material";
+import {FC} from "react";
 
-const UserCartOrderButton = () => {
+const UserCartOrderButton:FC<{ sendOrder: () => void }> = ({sendOrder}) => {
     return(
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Button sx={{
@@ -18,6 +19,7 @@ const UserCartOrderButton = () => {
 
             color: "#EBEFF3",
         }}
+                onClick={sendOrder}
         >
             Оформить заказ
         </Button>

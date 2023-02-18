@@ -5,10 +5,12 @@ import UserCartOrderButton from "@/components/UserCart/components/UserCartOrderB
 import UserCartAddCommentsButton from "@/components/UserCart/components/UserCartAddCommentsButton.component";
 import {useState} from "react";
 import UserCartPopup from "@/components/UserCart/components/UserCartPopup.component";
+import UserCartOrderSendWindow from "@/components/UserCart/components/UserCartOrderSendWindow.component";
 
 const UserCartModule = () => {
 
     const [isPopUpRendered, setIsPopUpRendered] = useState(false);
+    const [isOrderSended, setIsOrderSended] = useState(false);
 
     const ClosePopupOnClick = () => {
         setIsPopUpRendered(false);
@@ -18,7 +20,16 @@ const UserCartModule = () => {
         setIsPopUpRendered(true);
     }
 
-    if (!isPopUpRendered) {
+
+    const SendOrderOnClick = () => {
+        setIsOrderSended(true);
+    }
+
+    const closeOrderOnClick = () => {
+        setIsOrderSended(false);
+    }
+
+    if (!isPopUpRendered && !isOrderSended) {
         return(
         <Box
             sx={{
@@ -33,11 +44,11 @@ const UserCartModule = () => {
 
             <UserCartHeader />
             <UserCartBodyComponent />
-            <UserCartOrderButton />
+            <UserCartOrderButton sendOrder={SendOrderOnClick} />
             <UserCartAddCommentsButton OpenPopupOnClick={OpenPopupOnClick} />
         </Box>
         )
-    } else
+    } else if (isPopUpRendered)
         {
         return (
             <div style={{
@@ -53,6 +64,11 @@ const UserCartModule = () => {
             </div>
             )
         }
+    else if (isOrderSended) {
+        return(
+            <UserCartOrderSendWindow routeOnClick={closeOrderOnClick} />
+        )
+    }
 }
 
 export default UserCartModule;
