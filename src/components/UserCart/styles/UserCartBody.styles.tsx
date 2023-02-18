@@ -14,6 +14,7 @@ export const UserCartBodyBackground = styled.div`
     align-items: flex-start;
     display: block;
     justify-content: center;
+  
 `
 
 export const TableTextStyle = styled(TableCell)`

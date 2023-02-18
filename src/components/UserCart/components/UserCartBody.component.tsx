@@ -11,8 +11,12 @@ import {Box} from "@mui/system";
 
 const UserCartBodyComponent = () => {
 
+
+
     const cart = useSelector(selectCartItems);
     const cartTotal =useSelector(selectCartTotal);
+
+
 
     return(
         <UserCartBodyBackground>
@@ -22,7 +26,7 @@ const UserCartBodyComponent = () => {
                     display: "flex",
                     maxHeight: "331px",
                     height: "331px",
-                    alignItems: "flex-start"
+                    alignItems: "flex-start",
                 }}
             >
                 <Table stickyHeader

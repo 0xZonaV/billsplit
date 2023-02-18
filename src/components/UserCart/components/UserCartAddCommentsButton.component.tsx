@@ -1,6 +1,7 @@
 import {Button} from "@mui/material";
+import {FC} from "react";
 
-const UserCartAddCommentsButton = () => {
+const UserCartAddCommentsButton: FC<{ OpenPopupOnClick: () => void }> = ({ OpenPopupOnClick }) => {
     return(
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Button sx={{
@@ -18,6 +19,7 @@ const UserCartAddCommentsButton = () => {
 
                 color: "#33394B",
             }}
+                    onClick={OpenPopupOnClick}
             >
                 Добавить примечания
             </Button>
