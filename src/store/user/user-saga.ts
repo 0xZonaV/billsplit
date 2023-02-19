@@ -7,7 +7,7 @@ import {
     getCurrentUser, getTableUsers,
     signInWithGooglePopup, updateUserOrder,
     userSignOut,
-} from "@/utils/firebase.utils";
+} from "@/utils/firebase/firebase.utils";
 import {
     addItemFailed,
     AddItemStart,

@@ -25,7 +25,7 @@ const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaur
         return (
             <>
                 <TableNumberHeader restaurantName={nameOfRestaurant as string} />
-                <TableNumberPageBody tableNumber={numberOfTable as string} user={user} />
+                <TableNumberPageBody tableNumber={numberOfTable as string} />
                 <WaiterCardModule />
                 <ToMenuButton />
             </>

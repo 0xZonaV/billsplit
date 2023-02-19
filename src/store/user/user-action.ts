@@ -1,6 +1,6 @@
 import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {USER_ACTION_TYPES} from "./user-types";
-import {itemsInOrder, UserData} from "@/utils/firebase.utils";
+import {itemsInOrder, UserData} from "@/utils/firebase/firebase.utils";
 
 const {
     SET_CURRENT_USER,

@@ -20,6 +20,7 @@ import {
 } from "@firebase/firestore";
 import firebase from "firebase/compat";
 import {MenuItem} from "@/store/menu/menu-types";
+import {WaiterData} from "@/utils/firebase/firebase.types";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAO155af5IBhclOn437Q0jQZy-7ho69byM",
@@ -82,6 +83,8 @@ export const createUserDocumentFromAuth = async (
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
         const role = "user"
+
+        // TODO: Add id to user and full item into order
 
         const userOrder: UserOrder = {
             items: [
@@ -193,4 +196,16 @@ export const updateUserOrder = async (
     }
 
     return orderSnapshot as QueryDocumentSnapshot<UserData>;
+}
+
+
+export const getWaiterInfo  = async (nameOfRestaurant: string): Promise<WaiterData[]> => {
+    const collectionRef = collection(db, (`/restaurant/${nameOfRestaurant}/staff/`) );
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map(
+        (docSnapshot) => docSnapshot.data() as WaiterData
+    );
 }

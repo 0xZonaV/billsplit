@@ -1,5 +1,5 @@
 import {AnyAction} from "redux";
-import {UserData} from "@/utils/firebase.utils";
+import {UserData} from "@/utils/firebase/firebase.utils";
 import {
     setTableUsersSuccess,
     signInFailed,

@@ -2,8 +2,9 @@ import {useEffect} from "react";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {setTableUsersStart} from "@/store/user/user-action";
-import {selectTableUsers} from "@/store/user/user-selector";
+import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
 import TableNumberGuestsAvatar from "@/components/TablePage/Body/components/TableNumberGuestsAvatar.component";
+import {UserData} from "@/utils/firebase/firebase.utils";
 
 const TableNumberGuestsMapComponent = () => {
 
@@ -19,21 +20,41 @@ const TableNumberGuestsMapComponent = () => {
                 tableNum: numberOfTable as string
             }));
         },
-        [dispatch]
+        []
     );
 
     const users = useSelector(selectTableUsers);
+    const currentUser = useSelector(selectCurrentUser);
+
+
+    const NewUserTableList = () => {
+
+        const NewUserList: UserData[] = [];
+
+        if ((users !== null) && (currentUser !== null)) {
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].displayName === currentUser.displayName) {
+                    // @ts-ignore
+                    NewUserList.unshift(users[i]);
+
+                } else {
+                    NewUserList.push(users[i]);
+                }
+
+            }
+        }
+
+        return NewUserList;
+    }
 
     const UsersAvatar = () => {
-        if (users !== null) {
             return (
-                users.map(
+                NewUserTableList().map(
                     (element, index) => {
                         return <TableNumberGuestsAvatar key={index} displayName={element.displayName} />
                     }
                 )
             )
-        } else return <></>
     }
 
 

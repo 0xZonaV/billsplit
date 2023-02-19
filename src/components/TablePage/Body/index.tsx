@@ -2,7 +2,6 @@ import TableNumberTitle from "@/components/TablePage/Body/components/TableNumber
 import {FC} from "react";
 import {Box} from "@mui/system";
 import {TableNumberGuestsTitle} from "@/components/TablePage/Body/style/TableNumberGuests.style";
-import {UserData} from "@/utils/firebase.utils";
 import TableNumberGuestsMapComponent from "@/components/TablePage/Body/components/TableNumberGuestsMap.component";
 
 type TableNumberPageBodyProps = {

@@ -54,5 +54,62 @@ export const CallWaiterButton = styled.button`
   justify-content: center;
 
   color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  animation: toCheck1 1s ease-in-out;
+
+  @keyframes toCheck1 {
+    0% {
+      width: 30px;
+      color: #6BC159;
+    }
+
+    100% {
+      width: 99px;
+      color: #FFFFFF;
+    }
+  }
+
+`
+
+export const CallWaiterButtonPressed = styled.button`
+  background: #6BC159;
+  border-radius: 15px;
+  border: 0;
+  width: 30px;
+  height: 28px;
+  
+  margin-right: 33px;
+  
+  text-align: center;
+
+  font-family: 'Doloman Pavljenko';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 19px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #FFFFFF;
+  
+  animation: toCheck 1s ease-in-out;
+  
+  @keyframes toCheck {
+    0% {
+      width: 99px;
+      color: #6BC159;
+    }
+    
+    100% {
+      width: 30px;
+      color: #FFFFFF;
+    }
+  }
 
 `

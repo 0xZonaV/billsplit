@@ -11,10 +11,25 @@ export const selectMenu = createSelector(
 
 export const selectIsMenuLoading = createSelector(
     selectSalesReducer,
-    (sales) => sales.isLoading
+    (sales) => sales.isMenuLoading
 )
 
 export const selectMenuError = createSelector(
+    selectSalesReducer,
+    (sales) => sales.error
+)
+
+export const selectWaitersData = createSelector(
+    selectSalesReducer,
+    (sales) => sales.waiters
+)
+
+export const selectIsWaiterLoading = createSelector(
+    selectSalesReducer,
+    (sales) => sales.isWaiterLoading
+)
+
+export const selectWaiterError = createSelector(
     selectSalesReducer,
     (sales) => sales.error
 )
