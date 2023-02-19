@@ -25,6 +25,8 @@ const ToFinalizeButton = () => {
                 lineHeight: '23px',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: "0 48px 0 35px",
 
                 background: "#1F5F5B",
                 borderRadius: "15px",
@@ -39,7 +41,7 @@ const ToFinalizeButton = () => {
                     startIcon={<OrderIcon />}
                     onClick={ToFinalizeOnClick}
             >
-                Меню ресторана
+                Оплатить счет
             </Button>
         </Box>
     )
