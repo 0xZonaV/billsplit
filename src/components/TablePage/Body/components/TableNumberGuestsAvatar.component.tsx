@@ -19,12 +19,12 @@ const TableNumberGuestsAvatar:FC<{ displayName: string }> = ({ displayName }) =>
     }
 
     return(
-        <Box sx={{ maxWidth: "61px", maxHeight: "107px", marginTop: "10%" }}>
+        <Box sx={{ maxWidth: "61px", maxHeight: "107px", margin: "10% 2% 0 2%",  }}>
             <TableNumberGuestsAvatarEllipse  style={{ backgroundColor: "#5DF17E" }}>
                 <AvatarPeople />
             </TableNumberGuestsAvatarEllipse>
             <TableNumberGuestsAvatarText>
-                { TextToDisplay()}
+                {TextToDisplay()}
             </TableNumberGuestsAvatarText>
         </Box>
     )

@@ -9,7 +9,7 @@ const UserCartItemsRender:FC<{cartItems: CartItemType[]}> = ({cartItems}) => {
         (element) => {
             const {id, quantity, grammar, name, price, stock, description} = element;
             return (
-                <Typography>
+                <Typography key={id}>
                     {name}
                     {quantity}
                 </Typography>
