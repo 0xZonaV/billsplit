@@ -10,7 +10,7 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchWaiterStart} from "@/store/menu/menu-action";
-import {selectWaitersData} from "@/store/menu/menu-selector";
+import {selectIsWaiterLoading, selectWaitersData} from "@/store/menu/menu-selector";
 
 const WaiterCardModule = () => {
 
@@ -31,20 +31,23 @@ const WaiterCardModule = () => {
         []
     )
 
-    const waiterInfo = useSelector(selectWaitersData);
+    const waitersInfo = useSelector(selectWaitersData);
+    const isWaitersLoading = useSelector(selectIsWaiterLoading);
 
-    const {firstName, imgUrl} = waiterInfo[0];
+    if (!isWaitersLoading) {
 
-    return(
-        <Box sx={{ padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh" }}>
-            <WaiterCardBox>
-                <TableNumberGuestsAvatarEllipse>
-                    <WaiterAvatarImage src={imgUrl} alt={firstName} width="61" height="61" />
-                </TableNumberGuestsAvatarEllipse>
-                <WaiterName>
-                    {firstName}
-                </WaiterName>
-                { isButtonPressed ? (
+        const {firstName, imgUrl} = waitersInfo[0];
+
+        return (
+            <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
+                <WaiterCardBox>
+                    <TableNumberGuestsAvatarEllipse>
+                        <WaiterAvatarImage src={imgUrl} alt={firstName} width="61" height="61"/>
+                    </TableNumberGuestsAvatarEllipse>
+                    <WaiterName>
+                        {firstName}
+                    </WaiterName>
+                    {isButtonPressed ? (
                         <CallWaiterButtonPressed onClick={onClick}>
                             ✔
                         </CallWaiterButtonPressed>
@@ -53,11 +56,18 @@ const WaiterCardModule = () => {
                             Позвать
                         </CallWaiterButton>
                     )
-                }
+                    }
 
-            </WaiterCardBox>
-        </Box>
-    )
+                </WaiterCardBox>
+            </Box>
+        )
+    } else {
+        return (
+            <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
+                <WaiterCardBox />
+            </Box>
+        )
+    }
 }
 
 export default WaiterCardModule;
