@@ -2,15 +2,16 @@ import TableNumberTitle from "@/components/TablePage/Body/components/TableNumber
 import {FC} from "react";
 import {Box} from "@mui/system";
 import {TableNumberGuestsTitle} from "@/components/TablePage/Body/style/TableNumberGuests.style";
-import TableNumberGuestsAvatar from "@/components/TablePage/Body/components/TableNumberGuestsAvatar.component";
 import {UserData} from "@/utils/firebase.utils";
+import TableNumberGuestsMapComponent from "@/components/TablePage/Body/components/TableNumberGuestsMap.component";
 
 type TableNumberPageBodyProps = {
     tableNumber: string;
-    user: UserData;
 }
 
-const TableNumberPageBody:FC<TableNumberPageBodyProps> = ({ tableNumber, user }) => {
+const TableNumberPageBody:FC<TableNumberPageBodyProps> = ({ tableNumber }) => {
+
+
     return(
         <Box sx={{ padding: "10% 10% 0% 10%" }}>
             <TableNumberTitle tableNumber={tableNumber} />
@@ -18,26 +19,9 @@ const TableNumberPageBody:FC<TableNumberPageBodyProps> = ({ tableNumber, user })
                 <TableNumberGuestsTitle>
                     Гости
                 </TableNumberGuestsTitle>
-                <div
-                    style={{
-                        width: "314px",
-                        maxWidth: "314px",
-                        display: "flex",
-                        justifyContent: "left",
-                        marginTop: "30px",
-                        overflowBlock: "visible"
-                    }}
-                >
-                    <div
-                        style={{
-                            overflow: "scroll",
-                            display: "flex",
-                            flexDirection: "row"
-                        }}
-                    >
-                        <TableNumberGuestsAvatar displayName={user.displayName} />
-                    </div>
-                </div>
+
+                <TableNumberGuestsMapComponent />
+
                 <Box sx={{ marginTop: "10%" }}>
                     <TableNumberGuestsTitle>
                         Ваш официант

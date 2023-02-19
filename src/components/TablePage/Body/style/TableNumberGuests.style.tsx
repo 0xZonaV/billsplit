@@ -31,6 +31,7 @@ export const TableNumberGuestsAvatarText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   margin-top: 8px;
 
   color: #000000;

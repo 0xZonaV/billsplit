@@ -13,7 +13,10 @@ const {
     SIGN_OUT_SUCCESS,
     ADD_ITEM_IN_ORDER_START,
     ADD_ITEM_IN_ORDER_FAILED,
-    ADD_ITEM_IN_ORDER_SUCCESS
+    ADD_ITEM_IN_ORDER_SUCCESS,
+    SET_TABLE_USERS_START,
+    SET_TABLE_USERS_SUCCESS,
+    SET_TABLE_USERS_FAILED
 } = USER_ACTION_TYPES;
 
 export type rest = {
@@ -43,6 +46,12 @@ export type AddItemSuccess = ActionWithPayload<USER_ACTION_TYPES.ADD_ITEM_IN_ORD
 
 export type AddItemFailed = ActionWithPayload<USER_ACTION_TYPES.ADD_ITEM_IN_ORDER_FAILED, Error>;
 
+export type SetTableUsersStart = ActionWithPayload<USER_ACTION_TYPES.SET_TABLE_USERS_START, rest>;
+
+export type SetTableUsersSuccess = ActionWithPayload<USER_ACTION_TYPES.SET_TABLE_USERS_SUCCESS, UserData[]>;
+
+export type SetTableUsersFailed = ActionWithPayload<USER_ACTION_TYPES.SET_TABLE_USERS_FAILED, Error>;
+
 
 
 
@@ -67,3 +76,9 @@ export const addItemStart = withMatcher( (itemToAdd: itemsInOrder & rest): AddIt
 export const addItemSuccess = withMatcher( (user: UserData & {id: string}): AddItemSuccess => createAction(ADD_ITEM_IN_ORDER_SUCCESS, user));
 
 export const addItemFailed = withMatcher( (error: Error): AddItemFailed => createAction(ADD_ITEM_IN_ORDER_FAILED, error));
+
+export const setTableUsersStart = withMatcher( (rest: rest): SetTableUsersStart => createAction(SET_TABLE_USERS_START, rest));
+
+export const setTableUsersSuccess = withMatcher( (users: UserData[]): SetTableUsersSuccess => createAction(SET_TABLE_USERS_SUCCESS, users));
+
+export const setTableUsersFailed = withMatcher( (error: Error): SetTableUsersFailed => createAction(SET_TABLE_USERS_FAILED, error));

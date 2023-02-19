@@ -4,7 +4,7 @@ import {USER_ACTION_TYPES} from "./user-types";
 import {
     AdditionalInformation,
     createUserDocumentFromAuth,
-    getCurrentUser,
+    getCurrentUser, getTableUsers,
     signInWithGooglePopup, updateUserOrder,
     userSignOut,
 } from "@/utils/firebase.utils";
@@ -12,7 +12,7 @@ import {
     addItemFailed,
     AddItemStart,
     CheckUserSession,
-    GoogleSignInStart,
+    GoogleSignInStart, setTableUsersFailed, SetTableUsersStart, setTableUsersSuccess,
     signInFailed,
     signInSuccess,
     signOutFailed,
@@ -24,7 +24,8 @@ const {
     CHECK_USER_SESSION,
     GOOGLE_SIGN_IN_START,
     SIGN_OUT_START,
-    ADD_ITEM_IN_ORDER_START
+    ADD_ITEM_IN_ORDER_START,
+    SET_TABLE_USERS_START
 } = USER_ACTION_TYPES;
 
 
@@ -90,6 +91,21 @@ export function* addItemIntoOrder({payload: {itemsCount, id, tableNum, nameOfRes
 }
 
 
+export function* setTableUsers({payload: {tableNum, nameOfRestaurant}}: SetTableUsersStart) {
+    try {
+        const users = yield* call(getTableUsers, nameOfRestaurant, tableNum);
+        if (users) {
+            yield* put(setTableUsersSuccess(users))
+        }
+
+    } catch (error) {
+        yield* put(setTableUsersFailed(error as Error));
+    }
+}
+
+
+
+
 
 export function* onGoogleSignInStart() {
     yield* takeLatest(GOOGLE_SIGN_IN_START, signInWithGoogle);
@@ -107,8 +123,12 @@ export function* onItemAdd() {
     yield* takeLatest(ADD_ITEM_IN_ORDER_START, addItemIntoOrder);
 }
 
+export function* onUsersFetchStart() {
+    yield* takeLatest(SET_TABLE_USERS_START, setTableUsers);
+}
+
 
 export function* userSaga() {
-    yield* all([call(onCheckUserSession), call(onSignOut),call(onGoogleSignInStart), call(onItemAdd)]);
+    yield* all([call(onCheckUserSession), call(onSignOut),call(onGoogleSignInStart), call(onItemAdd), call(onUsersFetchStart)]);
 }
 

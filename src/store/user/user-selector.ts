@@ -8,3 +8,8 @@ export const selectCurrentUser = createSelector(
     selectUserReducer,
     (user) => user.currentUser
 )
+
+export const selectTableUsers = createSelector(
+    selectUserReducer,
+    (user) => user.tableUsers
+)

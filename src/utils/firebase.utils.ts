@@ -127,9 +127,6 @@ export const getCurrentUser = (): Promise<User | null> => {
 
 
 
-
-
-
 export const getRestaurantMenu  = async (restaurant: string): Promise<MenuItem[]> => {
     const collectionRef = collection(db, ('/restaurant/' + restaurant + '/menu') );
     const q = query(collectionRef);
@@ -141,6 +138,21 @@ export const getRestaurantMenu  = async (restaurant: string): Promise<MenuItem[]
         (docSnapshot) => docSnapshot.data() as MenuItem
     );
 }
+
+
+
+
+export const getTableUsers  = async (nameOfRestaurant: string, tableNum: string ): Promise<null | UserData[] > => {
+    const collectionRef = collection(db, (`/restaurant/${nameOfRestaurant}/table/${tableNum}/users/`) );
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map(
+        (docSnapshot) => docSnapshot.data() as UserData
+    );
+}
+
 
 
 export const updateUserOrder = async (
