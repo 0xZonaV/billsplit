@@ -78,7 +78,7 @@ export const CallWaiterButtonPressed = styled.button`
   background: #6BC159;
   border-radius: 15px;
   border: 0;
-  width: 30px;
+  width: 28px;
   height: 28px;
   
   margin-right: 33px;
@@ -107,7 +107,7 @@ export const CallWaiterButtonPressed = styled.button`
     }
     
     100% {
-      width: 30px;
+      width: 28px;
       color: #FFFFFF;
     }
   }

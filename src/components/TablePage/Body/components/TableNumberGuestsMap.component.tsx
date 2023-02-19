@@ -65,7 +65,7 @@ const TableNumberGuestsMapComponent = () => {
                 maxWidth: "314px",
                 display: "flex",
                 justifyContent: "left",
-                marginTop: "30px",
+                marginTop: "10px",
                 overflowBlock: "visible"
             }}
         >

@@ -5,7 +5,7 @@ const TableNumberHeader:FC<{ restaurantName: string }> = ({ restaurantName }) =>
     return(
         <HeaderMenuStyle>
                 <MenuRestaurantTitle>
-                    <div  style={{ padding: "5%" }}>
+                    <div  style={{ padding: "1% 5% 5% 5%" }}>
                         {restaurantName}
                     </div>
                 </MenuRestaurantTitle>
