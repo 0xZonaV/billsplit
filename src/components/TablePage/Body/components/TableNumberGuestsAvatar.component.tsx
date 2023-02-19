@@ -20,7 +20,7 @@ const TableNumberGuestsAvatar:FC<{ displayName: string }> = ({ displayName }) =>
 
     return(
         <Box sx={{  margin: "5% 2% 0 2%", overflow: "visible", display: "flex", flexDirection: "column", alignItems: "center"  }}>
-            <TableNumberGuestsAvatarEllipse  style={{ backgroundColor: "#5DF17E" }}>
+            <TableNumberGuestsAvatarEllipse  style={{ backgroundColor: "#78C853" }}>
                 <AvatarPeople />
             </TableNumberGuestsAvatarEllipse>
             <TableNumberGuestsAvatarText>

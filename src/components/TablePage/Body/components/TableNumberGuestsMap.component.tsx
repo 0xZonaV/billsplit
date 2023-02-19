@@ -31,7 +31,7 @@ const TableNumberGuestsMapComponent = () => {
 
         const NewUserList: UserData[] = [];
 
-        if ((users !== null) && (currentUser !== null)) {
+        if (users && currentUser) {
             for (let i = 0; i < users.length; i++) {
                 if (users[i].displayName === currentUser.displayName) {
                     // @ts-ignore
