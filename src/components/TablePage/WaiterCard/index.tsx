@@ -34,7 +34,7 @@ const WaiterCardModule = () => {
     const waitersInfo = useSelector(selectWaitersData);
     const isWaitersLoading = useSelector(selectIsWaiterLoading);
 
-    if (!isWaitersLoading) {
+    if (waitersInfo) {
 
         const {firstName, imgUrl} = waitersInfo[0];
 
