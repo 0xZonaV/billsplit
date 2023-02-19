@@ -1,12 +1,26 @@
-import {AvatarGroup} from "@mui/material";
 import TableNumberGuestsAvatar from "@/components/TablePage/Body/components/TableNumberGuestsAvatar.component";
 
 const UserFinalBillAvatars = () => {
     return(
-        <div style={{ display: "flex", justifyContent: "left", marginTop: "30px", overflowBlock: "visible"  }}>
-            <AvatarGroup max={5} sx={{ overflowBlock: "visible", justifyContent: "center"}}>
+        <div
+            style={{
+                width: "314px",
+                maxWidth: "314px",
+                display: "flex",
+                justifyContent: "left",
+                marginTop: "30px",
+                overflowBlock: "visible"
+            }}
+        >
+            <div
+                style={{
+                    overflow: "scroll",
+                    display: "flex",
+                    flexDirection: "row"
+                }}
+            >
                 <TableNumberGuestsAvatar displayName={"ZonaV"} />
-            </AvatarGroup>
+            </div>
         </div>
     )
 }

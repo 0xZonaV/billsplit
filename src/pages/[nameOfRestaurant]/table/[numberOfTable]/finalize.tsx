@@ -1,56 +1,61 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectCartItems} from "@/store/cart/cart-selector";
-import {Button} from "@mui/material";
-import {setCartItems} from "@/store/cart/cart-action";
-import {addItemStart} from "@/store/user/user-action";
 import {NextPage} from "next";
 import {AppGeneralProps} from "../../../../../@types";
-import UserFinalBillModule from "@/components/UserFinalBill";
+import {selectWindow} from "@/store/finalizeWindow/finalize-selector";
+import UserFinalBillTip from "@/components/UserFinalBill/components/UserFinalBillTip.component";
+import UserFinalBillTipSummEnterComponent
+    from "@/components/UserFinalBill/components/UserFinalBillTipSummEnter.component";
+import UserFinalBillMainForm from "@/components/UserFinalBill/components/UserFinalBillMainForm.component";
+import UserPaymentByCard from "@/components/UserFinalBillPay/components/UserPaymentByCard.component";
+import UserPaymentMethodChoose from "@/components/UserFinalBillPay/components/UserPaymentMethodChoose.component";
+import UserSuccessfulPaymentScreen from "@/components/UserFinalBillPay/components/UserSuccesfulPaymnetScreen.component";
+import {useEffect} from "react";
+import {setMainForm} from "@/store/finalizeWindow/finalize-action";
 
 const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
+
+    const WindowToRender = useSelector(selectWindow);
+
+    const {agreePopup, amountPopup, choosePaymentMethod, successfulPayment, cardPayment, mainForm} = WindowToRender;
+
     const dispatch = useDispatch();
 
-    const cart = useSelector(selectCartItems);
+    useEffect(
+        () => {
+            if (!agreePopup) {
+                dispatch(setMainForm());
+            }
+        },
+        []
+    )
 
-    const placeOrder = () => {
-        cart.map((element) => {
-            dispatch(addItemStart(
-                {
-                    id: element.id,
-                    itemsCount: element.quantity,
-                    nameOfRestaurant: nameOfRestaurant as string,
-                    tableNum: numberOfTable as string,
-                }
-            ))
-        })
-        dispatch(setCartItems([]));
+    switch (true) {
+        case (agreePopup) :
+            return <UserFinalBillTip />;
+
+        case (amountPopup) :
+            return <UserFinalBillTipSummEnterComponent />;
+
+        case (mainForm) :
+            return <UserFinalBillMainForm />;
+
+        case (cardPayment) :
+            return <UserPaymentByCard />;
+
+        case (choosePaymentMethod) :
+            return <UserPaymentMethodChoose />;
+
+        case (successfulPayment) :
+            return <UserSuccessfulPaymentScreen />;
+
+        default:
+            return (
+                <>
+                    Error
+                </>
+            )
     }
 
-    return(
-        <>
-            <UserFinalBillModule />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <Button sx={{
-                    background: "linear-gradient(91.49deg, #51CF49 -0.64%, #8CD531 124.74%)",
-                    borderRadius: "9px",
-                    fontFamily: 'Doloman Pavljenko',
-                    fontSize: "20px",
-                    lineHeight: "19px",
-                    display: "flex",
-                    alignItems: "center",
-                    textTransform: "none",
-                    width: "240px",
-                    height: "50px",
-                    marginTop: "7%",
-
-                    color: "#EBEFF3",
-                }}
-                >
-                    Выбрать способ оплаты
-                </Button>
-            </div>
-        </>
-    )
 }
 
 FinalizeOrder.getInitialProps = async ({query}): Promise<AppGeneralProps> => {
@@ -60,3 +65,24 @@ FinalizeOrder.getInitialProps = async ({query}): Promise<AppGeneralProps> => {
 }
 
 export default FinalizeOrder;
+
+
+
+
+// const dispatch = useDispatch();
+//
+// const cart = useSelector(selectCartItems);
+
+// const placeOrder = () => {
+//     cart.map((element) => {
+//         dispatch(addItemStart(
+//             {
+//                 id: element.id,
+//                 itemsCount: element.quantity,
+//                 nameOfRestaurant: nameOfRestaurant as string,
+//                 tableNum: numberOfTable as string,
+//             }
+//         ))
+//     })
+//     dispatch(setCartItems([]));
+// }

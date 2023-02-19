@@ -4,14 +4,22 @@ import {
     UserFinalBillTipBackground
 } from "@/components/UserFinalBill/style/UserFinalBillTip.style";
 import {Button} from "@mui/material";
-import {FC} from "react";
+import {useDispatch} from "react-redux";
+import {setAmountPopup, setMainForm} from "@/store/finalizeWindow/finalize-action";
 
-type PopupProps = {
-    CloseTipPopup: () => void;
-    OpenAmountPopup: () => void;
-}
 
-const UserFinalBillTip:FC<PopupProps> = ({ CloseTipPopup, OpenAmountPopup }) => {
+const UserFinalBillTip = () => {
+
+    const dispatch = useDispatch();
+
+    const CloseTipPopup = () => {
+        dispatch(setMainForm());
+    }
+
+    const OpenAmountPopup = () => {
+        dispatch(setAmountPopup());
+    }
+
     return(
         <UserFinalBillTipBackground>
             <UserFinalBillAgreePopup>

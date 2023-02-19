@@ -49,3 +49,34 @@ export const OrderCompleteBox = styled.div`
   margin-top: 50%;
   flex-direction: column;
 `
+
+
+export const SeeYouLaterText = styled.div`
+  font-family: 'Doloman Pavljenko';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 19px;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 11px;
+  display: block;
+
+  color: #33394B;
+  background: linear-gradient(90.25deg, #B0BFFF 14.28%, #B59BFF 81.95%);
+  border-radius: 15px;
+  
+  animation: openText 2s ease-in-out;
+  
+  @keyframes openText {
+    0% {
+      width: 0;
+    }
+    
+    100% {
+      width: 100%;
+    }
+  }
+  
+`

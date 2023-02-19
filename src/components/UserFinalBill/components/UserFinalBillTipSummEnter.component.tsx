@@ -7,14 +7,20 @@ import {
     UserFinalBillTipBackground
 } from "@/components/UserFinalBill/style/UserFinalBillTip.style";
 import {Button} from "@mui/material";
-import {FC} from "react";
+import {useDispatch} from "react-redux";
+import {setMainForm} from "@/store/finalizeWindow/finalize-action";
 
-type AmountProps = {
-    closePopup: () => void;
-    setTips: () => void;
-}
+const UserFinalBillTipSummEnter = () => {
 
-const UserFinalBillTipSummEnter: FC<AmountProps> = ({ closePopup, setTips }) => {
+    const dispatch = useDispatch();
+
+    const setTips = () => {
+
+        /* TODO: Add logic to add tips into firebase */
+
+        dispatch(setMainForm());
+    }
+
     return(
         <UserFinalBillTipBackground>
             <UserFinalBillAgreePopup style={{
