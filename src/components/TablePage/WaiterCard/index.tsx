@@ -6,35 +6,22 @@ import {
 } from "@/components/TablePage/WaiterCard/style/Module.style";
 import {Box} from "@mui/system";
 import {TableNumberGuestsAvatarEllipse} from "@/components/TablePage/Body/style/TableNumberGuests.style";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchWaiterStart} from "@/store/menu/menu-action";
+import {useState} from "react";
+import {useSelector} from "react-redux";
 import {selectIsWaiterLoading, selectWaitersData} from "@/store/menu/menu-selector";
 
 const WaiterCardModule = () => {
 
-    const Router = useRouter();
-    const dispatch = useDispatch();
-
     const [isButtonPressed, setIsButtonPressed] = useState(false);
-    const { nameOfRestaurant, numberOfTable } = Router.query;
 
     const onClick = () => {
         setIsButtonPressed(!isButtonPressed);
     }
 
-    useEffect(
-        () => {
-            dispatch(fetchWaiterStart({nameOfRestaurant: nameOfRestaurant as string, tableNum: numberOfTable as string }));
-        },
-        []
-    )
-
     const waitersInfo = useSelector(selectWaitersData);
     const isWaitersLoading = useSelector(selectIsWaiterLoading);
 
-    if (waitersInfo) {
+    if (waitersInfo.length > 0) {
 
         const {firstName, imgUrl} = waitersInfo[0];
 
@@ -49,7 +36,7 @@ const WaiterCardModule = () => {
                     </WaiterName>
                     {isButtonPressed ? (
                         <CallWaiterButtonPressed onClick={onClick}>
-                            ✔
+                            &#10004;
                         </CallWaiterButtonPressed>
                     ) : (
                         <CallWaiterButton onClick={onClick}>

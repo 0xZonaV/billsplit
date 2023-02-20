@@ -205,6 +205,8 @@ export const getWaiterInfo  = async (nameOfRestaurant: string): Promise<WaiterDa
 
     const querySnapshot = await getDocs(q);
 
+    console.log(querySnapshot);
+
     return querySnapshot.docs.map(
         (docSnapshot) => docSnapshot.data() as WaiterData
     );

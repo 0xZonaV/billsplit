@@ -11,14 +11,14 @@ export const TableNumberIndexPageStyle = styled.div`
   text-transform: capitalize;
   align-content: center;
   
-  margin-top: 80%;
+  margin-top: 50%;
   
   color: #000000;
 `
 export const GoogleSignInButton = styled(Button)`
     && {
-      background: linear-gradient(89.74deg, #BADCFF 8.19%, #ACB4FF 120.64%);
-      border-radius: 9px;
+      background: linear-gradient(89.74deg, #1F5F5B 8.19%, #1F5F5B 120.64%);;
+      border-radius: 15px;
       width: 304.6px;
       height: 54px;
       
@@ -34,7 +34,7 @@ export const GoogleSignInButton = styled(Button)`
       font-size: 22px;
       text-transform: none;
 
-      color: #6F778D;
+      color: #FFFF;
     }
 
   & .MuiButton-startIcon{
