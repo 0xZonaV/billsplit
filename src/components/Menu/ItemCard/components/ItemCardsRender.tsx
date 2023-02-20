@@ -25,7 +25,7 @@ const ItemCardsRender: FC<CardsRenderProps> = ({menu, cart, categoryRender}) => 
             }
 
             return (
-                <ItemCardModule key={element.id} item={element} cartItem={CartItem()}/>
+                <ItemCardModule key={element.id} item={element} cartItem={CartItem()} category={categoryRender} />
             )
         }
 

@@ -11,14 +11,17 @@ import ItemCardCartButton from "@/components/Menu/ItemCard/components/ItemCardCa
 import {CartItemType} from "@/store/cart/cart-types";
 import ItemCardCartAddDecreaseButton
     from "@/components/Menu/ItemCard/components/ItemCardCartAddDecreaseButton.component";
+import {CategoryRender} from "../../../../../@types";
 
 type ItemCardBottomProps = {
     item: MenuItem;
     cartItem: CartItemType | undefined;
 
+    category: CategoryRender;
+
 }
 
-const ItemCardBottom:FC<ItemCardBottomProps> = ({item, cartItem }) => {
+const ItemCardBottom:FC<ItemCardBottomProps> = ({item, cartItem, category }) => {
     const ButtonToRender = () => {
         if ((!cartItem) || ((cartItem) && (cartItem.quantity === 0))) {
             return <ItemCardCartButton  itemToAdd={item} />
@@ -31,7 +34,7 @@ const ItemCardBottom:FC<ItemCardBottomProps> = ({item, cartItem }) => {
         <Grid container spacing={2} sx={{ marginTop: "2%" }}>
             <ItemCardBottomGrammar item xs={6}>
                 <ItemCardBottomGrammarBox>
-                {item.grammar} гр
+                {item.grammar} { category.drinks ? "мл" : "гр"  }
                     <div>
                 КБЖУ: {item.calories}
                     </div>

@@ -20,7 +20,7 @@ const ItemCardCartButton:FC<ButtonProps> = ({ itemToAdd }) => {
 
     return(
         <Grid item xs={6}>
-            <AddItemToCartButton style={{ borderRadius: "14px",  }} onClick={AddItemToCart}>
+            <AddItemToCartButton style={{ borderRadius: "15px",  }} onClick={AddItemToCart}>
                 В корзину
             </AddItemToCartButton>
         </Grid>

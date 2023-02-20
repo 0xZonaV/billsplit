@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const ItemCardCartAddDecreaseBackEllipse = styled.div`
-  background: #CDD5DD;
-  border-radius: 14px;
-  width: 97px;
-  height: 26px;
+  background: #FFFF;
+  border-radius: 15px;
+  width: 104px;
+  height: 30px;
   line-height: 17px;
   border: 0;
   align-items: center;
@@ -27,10 +27,10 @@ export const NumberOfItemsInMenu = styled.div`
 `
 
 export const AddItemInMenu = styled.div`
-  background: #4EC544;
+  background: #1A9C4A;
   border-radius: 14px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   
   margin-right: 5px;
 
@@ -47,10 +47,10 @@ export const AddItemInMenu = styled.div`
 `
 
 export const DecreaseItemInMenu = styled.div`
-  background: #4EC544;
+  background: #1A9C4A;
   border-radius: 14px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 
   font-size: 15px;
   line-height: 18px;

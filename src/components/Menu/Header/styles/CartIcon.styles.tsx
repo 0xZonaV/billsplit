@@ -24,7 +24,7 @@ export const BackButtonEllipse = styled.div`
   align-items: center;
   justify-content: center;
 
-  background: #51C644;
+  background: #1A9C4A;
 `
 
 export const ShoppingBagContainer = styled(Grid)`

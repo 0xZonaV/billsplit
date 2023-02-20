@@ -9,6 +9,7 @@ import {TableNumberGuestsAvatarEllipse} from "@/components/TablePage/Body/style/
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {selectIsWaiterLoading, selectWaitersData} from "@/store/menu/menu-selector";
+import CheckIcon from "../../../../public/checkIcon.svg";
 
 const WaiterCardModule = () => {
 
@@ -36,7 +37,7 @@ const WaiterCardModule = () => {
                     </WaiterName>
                     {isButtonPressed ? (
                         <CallWaiterButtonPressed onClick={onClick}>
-                            &#10004;
+                            <CheckIcon />
                         </CallWaiterButtonPressed>
                     ) : (
                         <CallWaiterButton onClick={onClick}>

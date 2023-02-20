@@ -9,8 +9,8 @@ export const HeaderButtonBox = styled(Grid)`
 `
 
 export const HeaderButtonStyle = styled.button`
-  background: linear-gradient(88.99deg, #92D044 11.61%, #21BD44 144.92%);
-  border-radius: 7px;
+  background: #1A9C4A;
+  border-radius: 15px;
   width: 100%;
   
   border: 0;
