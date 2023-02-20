@@ -6,8 +6,9 @@ import ItemCardsRender from "@/components/Menu/ItemCard/components/ItemCardsRend
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner.component";
 import {selectCurrentUser} from "@/store/user/user-selector";
 import RegistrationForm from "@/components/RegistartionForm/RegistrationForm.component";
-import {AppGeneralProps} from "../../../../../../@types";
+import {AppGeneralProps, CategoryRender} from "../../../../../../@types";
 import {selectCartItems} from "@/store/cart/cart-selector";
+import {useState} from "react";
 
 const MenuIndexPage: NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
 
@@ -16,12 +17,33 @@ const MenuIndexPage: NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTab
     const isMenuLoading = useSelector(selectIsMenuLoading);
     const currentUser = useSelector(selectCurrentUser);
 
+    const CategoryInitialState: CategoryRender = {
+        salads: true,
+        pizza: false,
+        drinks: false,
+    }
+
+    const [categoryRender, setCategoryRender] = useState(CategoryInitialState);
+
+    const setCategoryToRender = (category: string) => {
+        if (category === "salads") {
+            setCategoryRender({ salads: true, pizza: false, drinks: false,})
+        }
+        if (category === "pizza") {
+            setCategoryRender({ salads: false, pizza: true, drinks: false,})
+        }
+        if (category === "drinks") {
+            setCategoryRender({ salads: false, pizza: false, drinks: true,})
+        }
+    }
+
+
     if (currentUser !== null) {
         if (!isMenuLoading) {
             return (
                 <>
-                    <HeaderMenuModule />
-                    <ItemCardsRender menu={menu} cart={cart}/>
+                    <HeaderMenuModule setCategoryToRender={setCategoryToRender} />
+                    <ItemCardsRender menu={menu} cart={cart} categoryRender={categoryRender} />
                 </>
             )
         } else {

@@ -13,7 +13,7 @@ const UserCartHeader = () => {
         <UserCartHeaderBox
             container
         >
-            <BackButtonComponent pushToUrl={`/${nameOfRestaurant}/table/${numberOfTable}/`} />
+            <BackButtonComponent pushToUrl={`/${nameOfRestaurant}/table/${numberOfTable}/menu`} />
             <MenuRestaurantTitle xs={7} item>
                 Ваш заказ
             </MenuRestaurantTitle>

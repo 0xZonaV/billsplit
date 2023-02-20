@@ -7,7 +7,7 @@ import BackButtonComponent from "@/components/Menu/Header/components/BackButton.
 import HeaderMenuButton from "@/components/Menu/Header/components/HeaderMenuButton.component";
 import {useRouter} from "next/router";
 
-const HeaderMenuModule: FC = () => {
+const HeaderMenuModule: FC<{ setCategoryToRender: (categoryToRender: string) => void }> = ({ setCategoryToRender }) => {
 
     const Router = useRouter();
 
@@ -22,9 +22,9 @@ const HeaderMenuModule: FC = () => {
             </Grid>
 
             <Grid container spacing={2} sx={{ padding: "5% 3% 5% 3%" }}>
-                <HeaderMenuButton buttonText={"Салаты"} />
-                <HeaderMenuButton buttonText={"Пицца"} />
-                <HeaderMenuButton buttonText={"Напитки"} />
+                <HeaderMenuButton setCategoryToRender={setCategoryToRender} categoryToRender={"salads"} buttonText={"Салаты"} />
+                <HeaderMenuButton setCategoryToRender={setCategoryToRender} categoryToRender={"pizza"} buttonText={"Пицца"} />
+                <HeaderMenuButton setCategoryToRender={setCategoryToRender} categoryToRender={"drinks"} buttonText={"Напитки"} />
             </Grid>
         </HeaderMenuStyle>
     )

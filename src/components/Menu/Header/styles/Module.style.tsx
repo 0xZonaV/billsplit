@@ -16,4 +16,7 @@ export const MenuRestaurantTitle = styled(Grid)`
 
 export const HeaderMenuStyle = styled.div`
   background: white;
+  position: sticky;
+  top: 0;
+  z-index: 99;
 `

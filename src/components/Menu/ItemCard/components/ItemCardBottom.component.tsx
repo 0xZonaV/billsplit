@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
 import {
     ItemCardBottomCurrency,
-    ItemCardBottomGrammar,
+    ItemCardBottomGrammar, ItemCardBottomGrammarBox,
     ItemCardBottomPrice,
     ItemCardBottomPRiceBox
 } from "@/components/Menu/ItemCard/styles/ItemCardBottom.style";
@@ -30,7 +30,12 @@ const ItemCardBottom:FC<ItemCardBottomProps> = ({item, cartItem }) => {
     return(
         <Grid container spacing={2} sx={{ marginTop: "2%" }}>
             <ItemCardBottomGrammar item xs={6}>
+                <ItemCardBottomGrammarBox>
                 {item.grammar} гр
+                    <div>
+                КБЖУ: {item.calories}
+                    </div>
+                </ItemCardBottomGrammarBox>
             </ItemCardBottomGrammar>
             <ItemCardBottomPRiceBox>
                 <ItemCardBottomPrice>

@@ -11,6 +11,10 @@ export const ItemCardBottomGrammar = styled(Grid)`
   color: #000000;
 `
 
+export const ItemCardBottomGrammarBox = styled.div`
+  display: inline-block;
+`
+
 export const ItemCardBottomPRiceBox = styled(Grid)`
   display: block;
 `

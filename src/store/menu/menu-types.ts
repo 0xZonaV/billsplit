@@ -14,6 +14,9 @@ export type MenuItem = {
     description: string;
     price: number;
     grammar: string;
-    stock: number
+    stock: number;
+    calories: string;
+    category: string;
+    imgUrl: string;
 
 }
