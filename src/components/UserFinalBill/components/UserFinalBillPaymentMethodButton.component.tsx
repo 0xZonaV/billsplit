@@ -1,12 +1,15 @@
 import {Button} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {setChoosePayment} from "@/store/finalizeWindow/finalize-action";
+import {FC} from "react";
 
-const UserFinalBillPaymentMethodButton = () => {
+const UserFinalBillPaymentMethodButton:FC<{ totalToPay: number, setTotalToPay: (totalToPay: number) => void }> = ({ totalToPay, setTotalToPay }) => {
 
     const dispatch = useDispatch()
 
     const openChoosePayment = () => {
+        setTotalToPay(totalToPay);
+
         dispatch(setChoosePayment());
     }
 

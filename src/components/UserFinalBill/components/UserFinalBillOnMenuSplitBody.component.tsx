@@ -14,10 +14,19 @@ type OnMenuSplitProps = {
     onAvatarClick: (id: string) => void;
     selectedUser: string;
     tipsAmount: number;
+    setTotalToPay: (totalToPay: number) => void
 }
 
-const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ tipsAmount, selectedUser, onAvatarClick, NewUserTableList }) => {
+const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ tipsAmount, selectedUser, onAvatarClick, NewUserTableList, setTotalToPay }) => {
     const currentUser = useSelector(selectCurrentUser);
+
+    const TotalToPay = () => {
+        if (currentUser) {
+            return currentUser.userOrder.items.reduce(
+                (sum, item) => sum + (item.price * item.quantity)
+            ,0)
+        } else return 0
+    }
 
     return(
         <div style={{ overflow: "visible" }}>
@@ -27,7 +36,7 @@ const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ tipsAmount, select
             { (currentUser) && (selectedUser === currentUser.id) ?
                 (
                     <>
-                        <UserFinalBillPaymentMethodButton />
+                        <UserFinalBillPaymentMethodButton totalToPay={TotalToPay()} setTotalToPay={setTotalToPay} />
                         <UserFinalBillMainFormAddTipsButton />
                     </>
                 )

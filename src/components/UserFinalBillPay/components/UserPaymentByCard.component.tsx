@@ -7,20 +7,9 @@ import {
     UserPaymentByCardTitle
 } from "@/components/UserFinalBillPay/style/UserPaymentByCard.style";
 import {Button} from "@mui/material";
-import {useState} from "react";
-import UserSuccessfulPaymentScreen from "@/components/UserFinalBillPay/components/UserSuccesfulPaymnetScreen.component";
+import {FC} from "react";
 
-const UserPaymentByCard = () => {
-
-    const [isPayed, setIsPayed] = useState(false);
-
-    const payWaiterOnClick = () => {
-        setIsPayed(true);
-    }
-
-
-
-    if (!isPayed) {
+const UserPaymentByCard: FC<{ totalToPay: number }> = ({ totalToPay }) => {
     return(
         <div style={{ display: "flex", justifyContent: "center" }}>
             <UserPaymentByCardBox>
@@ -57,7 +46,7 @@ const UserPaymentByCard = () => {
                                     date: true,
                                     datePattern: ["m", "d"]
                                 }}
-                                placeholder="01/22"
+                                placeholder="ММ/ГГ"
 
                             />
 
@@ -67,7 +56,7 @@ const UserPaymentByCard = () => {
                         <UserPaymentByCardInputAndLabel>
 
                             <UserPaymentByCardLabel>
-                                CVV
+                                CVV/CVC
                             </UserPaymentByCardLabel>
 
                             <UserPaymentByCardInput
@@ -99,23 +88,20 @@ const UserPaymentByCard = () => {
                         display: "flex",
                         alignItems: "center",
                         textTransform: "none",
-                        color: "#FFFFFF",
+                        color: "#EBEFF3",
                         marginTop: "51px",
                         width: "268px",
                         height: "62px",
                     }}
-                            onClick={payWaiterOnClick}
+
                     >
-                        Оплатить 750₽
+                        Оплатить {totalToPay}₽
                     </Button>
 
                 </UserPaymentByCardForm>
             </UserPaymentByCardBox>
         </div>
     )
-    } else {
-        return <UserSuccessfulPaymentScreen />
-    }
 }
 
 export default UserPaymentByCard;

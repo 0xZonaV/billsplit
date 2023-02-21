@@ -12,7 +12,7 @@ import {UserData} from "@/utils/firebase/firebase.utils";
 import {useRouter} from "next/router";
 import {setTableUsersStart} from "@/store/user/user-action";
 
-const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
+const UserFinalBillMainForm: FC<{ tipsAmount: number, setTotalToPay: (totalToPay: number) => void }> = ({tipsAmount, setTotalToPay}) => {
     const Router = useRouter();
     const dispatch = useDispatch();
 
@@ -29,7 +29,6 @@ const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
         []
     );
 
-    console.log(users);
 
 
     const { nameOfRestaurant, numberOfTable } = Router.query;
@@ -90,9 +89,9 @@ const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
             <UserFinalBillChooseButtons changeFocus={changeFocusOnClick} isSplitOnMenuFocused={isSplitOnMenuFocused} />
 
             { isSplitOnMenuFocused ?
-                <UserFinalBillOnMenuSplitBody NewUserTableList={NewUserTableList} selectedUser={selectedUser} onAvatarClick={onAvatarClick} tipsAmount={tipsAmount} />
+                <UserFinalBillOnMenuSplitBody setTotalToPay={setTotalToPay} NewUserTableList={NewUserTableList} selectedUser={selectedUser} onAvatarClick={onAvatarClick} tipsAmount={tipsAmount} />
                 :
-                <UserFinalBillSplitEqual NewUserTableList={NewUserTableList} totalTableAmount={TableTotal()} />
+                <UserFinalBillSplitEqual setTotalToPay={setTotalToPay} NewUserTableList={NewUserTableList} totalTableAmount={TableTotal()} />
             }
 
         </UserFinalBillFormBox>

@@ -19,6 +19,7 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
 
     const {agreePopup, amountPopup, choosePaymentMethod, successfulPayment, cardPayment, mainForm} = WindowToRender;
     const [tipsAmount, setTipsAmount] = useState(0);
+    const [totalToPay, setTotalToPay] = useState(0);
 
     const setTipsInPopup = (amount: number) => {
         setTipsAmount(amount);
@@ -41,10 +42,10 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
             return <UserFinalBillTipSummEnterComponent setTipsInPopup={setTipsInPopup} />;
 
         case (mainForm) :
-            return <UserFinalBillMainForm tipsAmount={tipsAmount} />;
+            return <UserFinalBillMainForm setTotalToPay={setTotalToPay} tipsAmount={tipsAmount} />;
 
         case (cardPayment) :
-            return <UserPaymentByCard />;
+            return <UserPaymentByCard totalToPay={totalToPay} />;
 
         case (choosePaymentMethod) :
             return <UserPaymentMethodChoose />;
@@ -69,24 +70,3 @@ FinalizeOrder.getInitialProps = async ({query}): Promise<AppGeneralProps> => {
 }
 
 export default FinalizeOrder;
-
-
-
-
-// const dispatch = useDispatch();
-//
-// const cart = useSelector(selectCartItems);
-
-// const placeOrder = () => {
-//     cart.map((element) => {
-//         dispatch(addItemStart(
-//             {
-//                 id: element.id,
-//                 itemsCount: element.quantity,
-//                 nameOfRestaurant: nameOfRestaurant as string,
-//                 tableNum: numberOfTable as string,
-//             }
-//         ))
-//     })
-//     dispatch(setCartItems([]));
-// }

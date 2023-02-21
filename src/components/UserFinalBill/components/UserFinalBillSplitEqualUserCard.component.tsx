@@ -8,19 +8,17 @@ import {selectCurrentUser} from "@/store/user/user-selector";
 import UserFinalBillUserCardComponent from "@/components/UserFinalBill/components/UserFinalBillUserCard.component";
 
 type EqualSplit = {
-    totalTableAmount: number;
+    amountPerPerson: number;
     NewUserTableList: () => UserData[];
 }
 
-const UserFinalBillSplitEqualUserCard: FC<EqualSplit> = ({totalTableAmount, NewUserTableList}) => {
+const UserFinalBillSplitEqualUserCard: FC<EqualSplit> = ({amountPerPerson , NewUserTableList}) => {
 
     const currentUser = useSelector(selectCurrentUser);
 
-    const totalUsers = NewUserTableList().length;
-    const amountForPerson = Math.ceil((totalTableAmount/totalUsers));
 
     const UserCardMap = NewUserTableList().map(
-        (user) => {
+        (user,index) => {
 
             const nameToDisplay = () => {
                 if ((currentUser) && (currentUser.id === user.id)) {
@@ -28,7 +26,7 @@ const UserFinalBillSplitEqualUserCard: FC<EqualSplit> = ({totalTableAmount, NewU
                 } else return user.displayName
             }
 
-            return <UserFinalBillUserCardComponent amount={amountForPerson} name={nameToDisplay()} key={user.id} />
+            return <UserFinalBillUserCardComponent amount={amountPerPerson} name={nameToDisplay()} key={index} />
     })
 
     return(
