@@ -13,7 +13,7 @@ export type MenuItem = {
     name: string;
     description: string;
     price: number;
-    grammar: string;
+    grammar: number;
     stock: number;
     calories: string;
     category: string;

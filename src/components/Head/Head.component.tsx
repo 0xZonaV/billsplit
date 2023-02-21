@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {fetchMenuStart, fetchWaiterStart} from "@/store/menu/menu-action";
 import {useRouter} from "next/router";
+import {checkUserSession, rest} from "@/store/user/user-action";
 
 const HeadComponent = () => {
 
@@ -11,9 +12,15 @@ const HeadComponent = () => {
 
     const { nameOfRestaurant, numberOfTable } = Router.query;
 
+    const restaurant: rest = {
+        nameOfRestaurant: nameOfRestaurant as string,
+        tableNum: numberOfTable as string
+    };
+
     useEffect(() => {
         dispatch(fetchMenuStart());
-        dispatch(fetchWaiterStart({nameOfRestaurant: nameOfRestaurant as string, tableNum: numberOfTable as string }));
+        dispatch(fetchWaiterStart(restaurant));
+        dispatch(checkUserSession(restaurant));
     }, [dispatch])
 
     return(

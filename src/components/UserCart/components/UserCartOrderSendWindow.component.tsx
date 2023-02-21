@@ -17,7 +17,7 @@ const UserCartOrderSendWindow: FC<{ routeOnClick: () => void }> = ({ routeOnClic
                 onClick={routeOnClick}
                 sx={{
                     background: "linear-gradient(89.74deg, #BADCFF 8.19%, #ACB4FF 120.64%)",
-                    borderRadius: "9px",
+                    borderRadius: "15px",
                     width: "240px",
                     height: "50px",
                     fontFamily: 'Doloman Pavljenko',
@@ -37,7 +37,7 @@ const UserCartOrderSendWindow: FC<{ routeOnClick: () => void }> = ({ routeOnClic
                     onClick={routeOnClick}
                     sx={{
                         background: "#D3F0E6",
-                        borderRadius: "9px",
+                        borderRadius: "15px",
                         width: "240px",
                         height: "50px",
                         fontFamily: 'Doloman Pavljenko',

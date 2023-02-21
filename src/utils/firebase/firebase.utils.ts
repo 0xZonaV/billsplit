@@ -21,6 +21,7 @@ import {
 import firebase from "firebase/compat";
 import {MenuItem} from "@/store/menu/menu-types";
 import {WaiterData} from "@/utils/firebase/firebase.types";
+import {CartItemType} from "@/store/cart/cart-types";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAO155af5IBhclOn437Q0jQZy-7ho69byM",
@@ -57,7 +58,7 @@ export type itemsInOrder = {
 }
 
 export type UserOrder = {
-    items: itemsInOrder[];
+    items: CartItemType[];
 }
 
 export type UserData = {
@@ -68,6 +69,7 @@ export type UserData = {
     userOrder: UserOrder;
 
 }
+
 export const createUserDocumentFromAuth = async (
     userAuth: User,
     additionalInformation = {} as AdditionalInformation,
@@ -86,13 +88,12 @@ export const createUserDocumentFromAuth = async (
 
         // TODO: Add id to user and full item into order
 
+        const restaurantMenu = await getRestaurantMenu(nameOfRestaurant);
+
+        const items: CartItemType[] = restaurantMenu.map(menuItem =>  ({...menuItem, quantity: 0}));
+
         const userOrder: UserOrder = {
-            items: [
-                {
-                    itemsCount: 0,
-                    id: 1,
-                }
-            ]
+            items: items,
         }
 
         try {
@@ -163,8 +164,7 @@ export const updateUserOrder = async (
     additionalInformation = {} as AdditionalInformation,
     nameOfRestaurant: string,
     tableNum: string,
-    idOfItemToAdd: number,
-    amountOfItem: number,
+    itemsToAdd: CartItemType[],
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
     if (!userAuth) return;
 
@@ -180,17 +180,23 @@ export const updateUserOrder = async (
 
         const userData = user.data();
 
-        const userItems = userData.userOrder.items;
+        const oldItems = userData.userOrder.items;
 
-        userItems[idOfItemToAdd-1] = {
-            id: idOfItemToAdd,
-            itemsCount: (userData.userOrder.items[idOfItemToAdd-1].itemsCount + amountOfItem),
-        }
+
+        const items = oldItems.map((element, index) => {
+            if (element.id === itemsToAdd[index].id) {
+                const newQuan = itemsToAdd[index].quantity + element.quantity;
+
+                return ({...element, quantity: newQuan});
+            } else return element
+        })
+
 
 
         const userOrder: UserOrder = {
-            items: userItems
+            items: items
         }
+
 
         await updateDoc(userOrderRef, {...userData, userOrder});
     }

@@ -3,7 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCartItems} from "@/store/cart/cart-selector";
 import {addItemToCart, decreaseItemQuantity} from "@/store/cart/cart-action";
 import {CartItemType} from "@/store/cart/cart-types";
-import Arrow from "../../../../public/GreenArrowLeft.svg";
+import {
+    AddItemInCart,
+    DecreaseItemInCart,
+    NumberOfItemsInCart, TableButtonAndNumberStyle
+} from "@/components/UserCart/styles/UserCartCahngeQuantityButton.style";
 const UserCartChangeQuantityButton:FC<{ item: CartItemType }> = ({ item }) => {
     const dispatch = useDispatch();
 
@@ -19,9 +23,17 @@ const UserCartChangeQuantityButton:FC<{ item: CartItemType }> = ({ item }) => {
 
     return(
         <>
-            <Arrow onClick={DecreaseItemOnClick} style={{ marginRight: "4px" }} />
+            <TableButtonAndNumberStyle>
+            <DecreaseItemInCart style={{ marginLeft: "0", marginRight: "0" }} onClick={DecreaseItemOnClick}>-</DecreaseItemInCart>
+            </TableButtonAndNumberStyle>
+            <TableButtonAndNumberStyle>
+            <NumberOfItemsInCart>
                 {item.quantity}
-            <Arrow style={{ transform: "scaleX(-1)", marginLeft: "4px" }} onClick={AddItemOnClick} />
+            </NumberOfItemsInCart>
+            </TableButtonAndNumberStyle>
+            <TableButtonAndNumberStyle>
+                <AddItemInCart onClick={AddItemOnClick} >+</AddItemInCart>
+            </TableButtonAndNumberStyle>
         </>
     )
 }

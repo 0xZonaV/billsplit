@@ -77,13 +77,13 @@ export function* signOut() {
     }
 }
 
-export function* addItemIntoOrder({payload: {itemsCount, id, tableNum, nameOfRestaurant}}: AddItemStart) {
+export function* addItemIntoOrder({payload: {itemsToAdd, rest}}: AddItemStart) {
     try {
         const userAuth = yield* call(getCurrentUser);
         if (userAuth) {
-            yield* call(updateUserOrder, userAuth, {}, nameOfRestaurant, tableNum, id, itemsCount);
+            yield* call(updateUserOrder, userAuth, {}, rest.nameOfRestaurant, rest.tableNum, itemsToAdd);
 
-            yield* call(getSnapshotFromUserAuth, userAuth, nameOfRestaurant, tableNum);
+            yield* call(getSnapshotFromUserAuth, userAuth, rest.nameOfRestaurant, rest.tableNum);
         }
     } catch (error) {
         yield put(addItemFailed(error as Error))

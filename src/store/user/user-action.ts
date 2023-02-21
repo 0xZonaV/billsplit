@@ -1,6 +1,7 @@
 import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {USER_ACTION_TYPES} from "./user-types";
-import {itemsInOrder, UserData} from "@/utils/firebase/firebase.utils";
+import {UserData} from "@/utils/firebase/firebase.utils";
+import {CartItemType} from "@/store/cart/cart-types";
 
 const {
     SET_CURRENT_USER,
@@ -24,6 +25,11 @@ export type rest = {
     tableNum: string,
 }
 
+export type ItemsToAddType = {
+    itemsToAdd: CartItemType[],
+    rest: rest,
+}
+
 export type SetCurrentUser = ActionWithPayload<USER_ACTION_TYPES.SET_CURRENT_USER, UserData>;
 
 export type CheckUserSession = ActionWithPayload<USER_ACTION_TYPES.CHECK_USER_SESSION, rest>;
@@ -40,7 +46,7 @@ export type SignOutSuccess = Action<USER_ACTION_TYPES.SIGN_OUT_SUCCESS>;
 
 export type SignOutFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_OUT_FAILED, Error>;
 
-export type AddItemStart = ActionWithPayload<USER_ACTION_TYPES.ADD_ITEM_IN_ORDER_START, itemsInOrder & rest>;
+export type AddItemStart = ActionWithPayload<USER_ACTION_TYPES.ADD_ITEM_IN_ORDER_START, ItemsToAddType>;
 
 export type AddItemSuccess = ActionWithPayload<USER_ACTION_TYPES.ADD_ITEM_IN_ORDER_SUCCESS, UserData>;
 
@@ -71,7 +77,7 @@ export const signOutSuccess = withMatcher((): SignOutSuccess => createAction(SIG
 
 export const signOutFailed = withMatcher((error: Error):SignOutFailed => createAction(SIGN_OUT_FAILED, error));
 
-export const addItemStart = withMatcher( (itemToAdd: itemsInOrder & rest): AddItemStart => createAction(ADD_ITEM_IN_ORDER_START, itemToAdd));
+export const addItemStart = withMatcher( (addItems: ItemsToAddType): AddItemStart => createAction(ADD_ITEM_IN_ORDER_START, addItems));
 
 export const addItemSuccess = withMatcher( (user: UserData & {id: string}): AddItemSuccess => createAction(ADD_ITEM_IN_ORDER_SUCCESS, user));
 

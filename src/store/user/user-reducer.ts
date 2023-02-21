@@ -1,6 +1,7 @@
 import {AnyAction} from "redux";
 import {UserData} from "@/utils/firebase/firebase.utils";
 import {
+    addItemFailed,
     setTableUsersSuccess,
     signInFailed,
     signInSuccess,
@@ -12,14 +13,16 @@ export type UserState = {
     readonly currentUser: UserData | null,
     readonly tableUsers: UserData[] | null,
     readonly error: Error | null,
-    readonly isLoading: boolean
+    readonly isLoading: boolean,
+    readonly addError: Error | null,
 }
 
 const USER_INITIAL_STATE: UserState = {
     currentUser: null,
     tableUsers: null,
     error: null,
-    isLoading: false
+    isLoading: false,
+    addError: null,
 };
 
 export const userReducer = (
@@ -32,6 +35,10 @@ export const userReducer = (
 
     if (setTableUsersSuccess.match(action)) {
         return {...state, tableUsers: action.payload}
+    }
+
+    if (addItemFailed.match(action)) {
+        return {...state, addError: action.payload};
     }
 
     if (signInSuccess.match(action)) {

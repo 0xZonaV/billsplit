@@ -28,7 +28,7 @@ const ToFinalizeButton = () => {
                 justifyContent: 'space-between',
                 padding: "0 48px 0 35px",
 
-                background: "#1F5F5B",
+                background: "linear-gradient(90.57deg, #1F5F5B 5.49%, #1F5F5B 99.5%)",
                 borderRadius: "15px",
 
                 textTransform: "none",

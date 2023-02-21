@@ -10,9 +10,9 @@ const UserCartBodyTableItem:FC<{ item: CartItemType }> = ({item}) => {
 
     return(
         <TableRow>
-            <TableTextStyle>{item.name}</TableTextStyle>
-            <TableTextStyle sx={{ whiteSpace: "nowrap" }} align="center" ><UserCartChangeQuantityButton item={item} /></TableTextStyle>
-            <TableTextStyle>{item.quantity * item.price}</TableTextStyle>
+            <TableTextStyle sx={{ maxWidth: "120px" }} >{item.name}</TableTextStyle>
+            <UserCartChangeQuantityButton item={item} />
+            <TableTextStyle align="center">{item.quantity * item.price}</TableTextStyle>
         </TableRow>
     )
 }

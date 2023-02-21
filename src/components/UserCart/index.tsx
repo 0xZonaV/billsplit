@@ -3,14 +3,37 @@ import {Box} from "@mui/system";
 import UserCartBodyComponent from "@/components/UserCart/components/UserCartBody.component";
 import UserCartOrderButton from "@/components/UserCart/components/UserCartOrderButton.component";
 import UserCartAddCommentsButton from "@/components/UserCart/components/UserCartAddCommentsButton.component";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import UserCartPopup from "@/components/UserCart/components/UserCartPopup.component";
 import UserCartOrderSendWindow from "@/components/UserCart/components/UserCartOrderSendWindow.component";
+import {addItemStart, rest} from "@/store/user/user-action";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
+import {selectCartItems} from "@/store/cart/cart-selector";
+import {selectCurrentUser} from "@/store/user/user-selector";
 
 const UserCartModule = () => {
 
     const [isPopUpRendered, setIsPopUpRendered] = useState(false);
-    const [isOrderSended, setIsOrderSended] = useState(false);
+    const [isOrderSent, setIsOrderSent] = useState(false);
+    const [orderComment, setOrderComment] = useState("");
+
+    const dispatch = useDispatch();
+    const Router = useRouter();
+    const cartItems = useSelector(selectCartItems);
+    const user = useSelector(selectCurrentUser);
+
+    const { nameOfRestaurant, numberOfTable } = Router.query;
+    const restaurant: rest = {
+        nameOfRestaurant: nameOfRestaurant as string,
+        tableNum: numberOfTable as string
+    };
+
+
+    const onCommentInputChange = (event: ChangeEvent<HTMLTextAreaElement> ) => {
+        setOrderComment(event.target.value);
+    }
+
 
     const ClosePopupOnClick = () => {
         setIsPopUpRendered(false);
@@ -21,15 +44,25 @@ const UserCartModule = () => {
     }
 
 
-    const SendOrderOnClick = () => {
-        setIsOrderSended(true);
+    const SendOrderOnClick = async () => {
+        dispatch(addItemStart({
+            itemsToAdd: cartItems,
+            rest: restaurant
+        }));
+
+        setIsOrderSent(true);
+
     }
 
     const closeOrderOnClick = () => {
-        setIsOrderSended(false);
+        setIsOrderSent(false);
     }
 
-    if (!isPopUpRendered && !isOrderSended) {
+
+
+
+
+    if (!isPopUpRendered && !isOrderSent) {
         return(
         <Box
             sx={{
@@ -57,14 +90,13 @@ const UserCartModule = () => {
                 height: "100vh",
                 alignItems: "center",
                 display: "flex",
-                justifyContent: "center"
-
+                justifyContent: "center",
             }}>
-                <UserCartPopup ClosePopupOnClick={ClosePopupOnClick} />
+                <UserCartPopup ClosePopupOnClick={ClosePopupOnClick} onCommentInputChange={onCommentInputChange} inputValue={orderComment} />
             </div>
             )
         }
-    else if (isOrderSended) {
+    else if (isOrderSent) {
         return(
             <UserCartOrderSendWindow routeOnClick={closeOrderOnClick} />
         )

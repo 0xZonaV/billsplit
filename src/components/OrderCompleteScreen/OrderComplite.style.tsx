@@ -28,7 +28,7 @@ export const OrderCompletedBackground = styled.div`
 export const OrderCompleteText = styled.div`
   font-family: 'Buyan';
   font-style: normal;
-  font-weight: 400;
+  font-weight: bolder;
   font-size: 36px;
   line-height: 39px;
   text-align: center;

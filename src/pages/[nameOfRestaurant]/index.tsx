@@ -1,7 +1,7 @@
 import {Button, Typography} from "@mui/material";
 import {NextPage} from "next";
 import {useDispatch, useSelector} from "react-redux";
-import {addItemStart, googleSignInStart} from "@/store/user/user-action";
+import {googleSignInStart} from "@/store/user/user-action";
 import {selectCurrentUser} from "@/store/user/user-selector";
 import {selectMenu} from "@/store/menu/menu-selector";
 import {addItemToCart} from "@/store/cart/cart-action";
@@ -29,14 +29,14 @@ const RestaurantIndexPage: NextPage<RestaurantIndexPageProps> = ({nameOfRestaura
         console.log(user);
     }
 
-    const onClick3 = async () => {
-        dispatch(addItemStart({
-            nameOfRestaurant: nameOfRestaurant as string,
-            tableNum: "1",
-            id: 1,
-            itemsCount: 1,
-        }));
-    }
+    // const onClick3 = async () => {
+    //     dispatch(addItemStart({
+    //         nameOfRestaurant: nameOfRestaurant as string,
+    //         tableNum: "1",
+    //         id: 1,
+    //         itemsCount: 1,
+    //     }));
+    // }
 
 
     return(
@@ -45,7 +45,7 @@ const RestaurantIndexPage: NextPage<RestaurantIndexPageProps> = ({nameOfRestaura
             <Button onClick={logGoogleUser}>Google Sign In</Button>
             <Button onClick={onClick2}>Check User Order</Button>
 
-            <Button onClick={onClick3}>Add Цезарь in to the order</Button>
+            <Button>Add Цезарь in to the order</Button>
 
             {menu.map((element) => {
                 const onClick4 = () => {

@@ -5,8 +5,8 @@ const UserCartOrderButton:FC<{ sendOrder: () => void }> = ({sendOrder}) => {
     return(
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Button sx={{
-            background: "linear-gradient(91.49deg, #51CF49 -0.64%, #8CD531 124.74%)",
-            borderRadius: "9px",
+            background: "linear-gradient(91.49deg, #159947 -0.64%, #49B265 124.74%);",
+            borderRadius: "15px",
             fontFamily: 'Doloman Pavljenko',
             fontSize: "20px",
             lineHeight: "19px",

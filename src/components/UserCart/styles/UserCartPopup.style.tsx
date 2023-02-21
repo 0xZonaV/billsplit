@@ -26,7 +26,7 @@ export const UserCartPopupText = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 10% 10% 0 25%;
+  margin: 10% 10% 0 20%;
 
 
   color: #33394B;
@@ -45,15 +45,15 @@ export const UserCartPopupTextFieldBox = styled.div`
   text-align: center;
   justify-content: center;
   height: 60%;
-  padding: 30px 30px 0 30px;
+
   border: 0;
 
 `
 
 export const UserCartPopupTextField = styled.textarea`
   resize: none;
-  height: 300px;
-  width: 320px;
+  height: 248px;
+  width: 233px;
   border-radius: 9px;
   background: white;
   border: 0;

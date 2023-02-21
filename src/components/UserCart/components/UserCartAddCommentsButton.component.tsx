@@ -5,8 +5,8 @@ const UserCartAddCommentsButton: FC<{ OpenPopupOnClick: () => void }> = ({ OpenP
     return(
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Button sx={{
-                background: "linear-gradient(89.74deg, #BADCFF 8.19%, #ACB4FF 120.64%)",
-                borderRadius: "9px",
+                background: "linear-gradient(89.74deg, #1F5F5B 8.19%, #1F5F5B 120.64%)",
+                borderRadius: "15px",
                 fontFamily: 'Doloman Pavljenko',
                 fontSize: "20px",
                 lineHeight: "19px",
@@ -17,7 +17,7 @@ const UserCartAddCommentsButton: FC<{ OpenPopupOnClick: () => void }> = ({ OpenP
                 height: "50px",
                 marginTop: "4%",
 
-                color: "#33394B",
+                color: "#FFFF",
             }}
                     onClick={OpenPopupOnClick}
             >

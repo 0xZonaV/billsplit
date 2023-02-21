@@ -1,15 +1,18 @@
 import {setCartItems} from "./cart-action";
 import {AnyAction} from "redux";
 import {CartItemType} from "@/store/cart/cart-types";
+import {restaurantMenu} from "@/utils/firebase/firebase.consts";
 
 export type CartState = {
     readonly isCartOpen: boolean;
     readonly cartItems: CartItemType[];
 }
 
+const CartItemsInitialState: CartItemType[] = restaurantMenu.map(menuItem =>  ({...menuItem, quantity: 0}));
+
 export const CART_INITIAL_STATE: CartState = {
     isCartOpen: false,
-    cartItems: [],
+    cartItems: CartItemsInitialState,
 };
 
 export const cartReducer = (state = CART_INITIAL_STATE, action = {} as AnyAction): CartState => {

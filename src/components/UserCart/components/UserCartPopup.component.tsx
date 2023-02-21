@@ -5,9 +5,15 @@ import {
     UserCartPopupTextFieldBox
 } from "@/components/UserCart/styles/UserCartPopup.style";
 import {Button} from "@mui/material";
-import {FC} from "react";
+import {ChangeEvent, FC} from "react";
 
-const UserCartPopup: FC<{ ClosePopupOnClick: () => void }> = ({ClosePopupOnClick}) => {
+type UserCartPopupProps = {
+    ClosePopupOnClick: () => void;
+    onCommentInputChange: (event: ChangeEvent<HTMLTextAreaElement> ) => void;
+    inputValue: string
+}
+
+const UserCartPopup: FC<UserCartPopupProps> = ({ClosePopupOnClick, onCommentInputChange, inputValue}) => {
     return(
         <UserCartPopupBox>
             <UserCartPopupTextAndCloseBox>
@@ -17,12 +23,19 @@ const UserCartPopup: FC<{ ClosePopupOnClick: () => void }> = ({ClosePopupOnClick
                 <UserCartCloseButtonStyle onClick={ClosePopupOnClick} />
             </UserCartPopupTextAndCloseBox>
             <UserCartPopupTextFieldBox>
-                <UserCartPopupTextField id="commentText" name="commentsText" rows={400} cols={15} />
+                <UserCartPopupTextField
+                    onChange={onCommentInputChange}
+                    id="commentText"
+                    name="commentsText"
+                    rows={200}
+                    cols={15}
+                    value={inputValue}
+                />
             </UserCartPopupTextFieldBox>
             <UserCartPopupTextAndCloseBox>
             <Button sx={{
-                background: "linear-gradient(90.19deg, #71E853 -4.95%, #23B042 119.78%)",
-                borderRadius: "9px",
+                background: "linear-gradient(90.19deg, #1B9D4A -4.95%, #23B042 119.78%);",
+                borderRadius: "15px",
                 fontFamily: 'Doloman Pavljenko',
                 fontStyle: "normal",
                 fontWeight: "300",
@@ -32,10 +45,11 @@ const UserCartPopup: FC<{ ClosePopupOnClick: () => void }> = ({ClosePopupOnClick
                 alignItems: "center",
                 textTransform: "none",
                 color: "#EBEFF3",
-                marginTop: "9%",
                 width: "199px",
                 height: "54px",
-            }}>
+            }}
+                    onClick={() => console.log(inputValue)}
+            >
                 Отправить
             </Button>
             </UserCartPopupTextAndCloseBox>
