@@ -8,8 +8,16 @@ import {
 } from "@/components/UserFinalBillPay/style/UserPaymentByCard.style";
 import {Button} from "@mui/material";
 import {FC} from "react";
+import {useDispatch} from "react-redux";
+import {setSuccessful} from "@/store/finalizeWindow/finalize-action";
 
 const UserPaymentByCard: FC<{ totalToPay: number }> = ({ totalToPay }) => {
+    const dispatch = useDispatch();
+
+    const onClick = () => {
+        dispatch(setSuccessful());
+    }
+
     return(
         <div style={{ display: "flex", justifyContent: "center" }}>
             <UserPaymentByCardBox>
@@ -93,7 +101,7 @@ const UserPaymentByCard: FC<{ totalToPay: number }> = ({ totalToPay }) => {
                         width: "268px",
                         height: "62px",
                     }}
-
+                            onClick={onClick}
                     >
                         Оплатить {totalToPay}₽
                     </Button>
