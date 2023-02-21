@@ -52,10 +52,6 @@ export type AdditionalInformation = {
 
 };
 
-export type itemsInOrder = {
-    itemsCount: number;
-    id: number;
-}
 
 export type UserOrder = {
     items: CartItemType[];
@@ -65,7 +61,7 @@ export type UserData = {
     displayName: string;
     email: string;
     role: string;
-
+    orderComments: string[];
     userOrder: UserOrder;
 
 }
@@ -96,12 +92,15 @@ export const createUserDocumentFromAuth = async (
             items: items,
         }
 
+        const orderComments: string[] = [];
+
         try {
             await setDoc(userDocRef, {
                 displayName,
                 email,
                 role,
                 userOrder,
+                orderComments,
                 ...additionalInformation
             });
         } catch (error) {
@@ -165,6 +164,7 @@ export const updateUserOrder = async (
     nameOfRestaurant: string,
     tableNum: string,
     itemsToAdd: CartItemType[],
+    newComment: string
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
     if (!userAuth) return;
 
@@ -174,14 +174,16 @@ export const updateUserOrder = async (
 
     if (!orderSnapshot.exists()) return;
 
-    const user = await createUserDocumentFromAuth(userAuth, {}, nameOfRestaurant, tableNum);
+    const user = await createUserDocumentFromAuth(userAuth, additionalInformation, nameOfRestaurant, tableNum);
 
     if (user) {
 
         const userData = user.data();
 
         const oldItems = userData.userOrder.items;
+        const orderComments = userData.orderComments;
 
+        orderComments.push(newComment);
 
         const items = oldItems.map((element, index) => {
             if (element.id === itemsToAdd[index].id) {
@@ -198,7 +200,7 @@ export const updateUserOrder = async (
         }
 
 
-        await updateDoc(userOrderRef, {...userData, userOrder});
+        await updateDoc(userOrderRef, {...userData, orderComments: orderComments, userOrder});
     }
 
     return orderSnapshot as QueryDocumentSnapshot<UserData>;

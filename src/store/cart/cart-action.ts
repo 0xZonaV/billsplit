@@ -1,6 +1,7 @@
 import {ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {CART_ACTION_TYPES, CartItemType} from "./cart-types";
 import {MenuItem} from "@/store/menu/menu-types";
+import {CartItemsInitialState} from "@/store/cart/cart-reducer";
 
 const addCartItem = (cartItems: CartItemType[], productToAdd: MenuItem) => {
     const existingCartItem = cartItems.find(
@@ -27,8 +28,6 @@ const removeCartItem = (cartItems: CartItemType[], cartItemToRemove: MenuItem) =
     );
 };
 
-const clearCartItem = (cartItems: CartItemType[], cartItemToClear: MenuItem) =>
-    cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
 export type SetCartItems = ActionWithPayload<CART_ACTION_TYPES.SET_CART_ITEMS, CartItemType[]>;
 
@@ -45,7 +44,6 @@ export const decreaseItemQuantity = (cartItems: CartItemType[], cartItemToRemove
     return setCartItems(newCartItems);
 };
 
-export const removeItem = (cartItems: CartItemType[], cartItemToClear: MenuItem) => {
-    const newCartItems = clearCartItem(cartItems, cartItemToClear);
-    return setCartItems(newCartItems);
+export const clearCart = () => {
+    return setCartItems(CartItemsInitialState);
 };

@@ -77,11 +77,11 @@ export function* signOut() {
     }
 }
 
-export function* addItemIntoOrder({payload: {itemsToAdd, rest}}: AddItemStart) {
+export function* addItemIntoOrder({payload: {itemsToAdd, rest, orderComments}}: AddItemStart) {
     try {
         const userAuth = yield* call(getCurrentUser);
         if (userAuth) {
-            yield* call(updateUserOrder, userAuth, {}, rest.nameOfRestaurant, rest.tableNum, itemsToAdd);
+            yield* call(updateUserOrder, userAuth, {}, rest.nameOfRestaurant, rest.tableNum, itemsToAdd, orderComments);
 
             yield* call(getSnapshotFromUserAuth, userAuth, rest.nameOfRestaurant, rest.tableNum);
         }

@@ -48,9 +48,9 @@ const UserCartPopup: FC<UserCartPopupProps> = ({ClosePopupOnClick, onCommentInpu
                 width: "199px",
                 height: "54px",
             }}
-                    onClick={() => console.log(inputValue)}
+                    onClick={ClosePopupOnClick}
             >
-                Отправить
+                Добавить
             </Button>
             </UserCartPopupTextAndCloseBox>
         </UserCartPopupBox>

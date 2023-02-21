@@ -8,7 +8,7 @@ export type CartState = {
     readonly cartItems: CartItemType[];
 }
 
-const CartItemsInitialState: CartItemType[] = restaurantMenu.map(menuItem =>  ({...menuItem, quantity: 0}));
+export const CartItemsInitialState: CartItemType[] = restaurantMenu.map(menuItem =>  ({...menuItem, quantity: 0}));
 
 export const CART_INITIAL_STATE: CartState = {
     isCartOpen: false,

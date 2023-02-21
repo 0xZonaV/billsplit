@@ -28,6 +28,7 @@ export type rest = {
 export type ItemsToAddType = {
     itemsToAdd: CartItemType[],
     rest: rest,
+    orderComments: string,
 }
 
 export type SetCurrentUser = ActionWithPayload<USER_ACTION_TYPES.SET_CURRENT_USER, UserData>;

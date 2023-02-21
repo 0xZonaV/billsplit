@@ -9,8 +9,9 @@ import UserCartOrderSendWindow from "@/components/UserCart/components/UserCartOr
 import {addItemStart, rest} from "@/store/user/user-action";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {selectCartItems} from "@/store/cart/cart-selector";
+import {selectCartItems, selectCartTotal} from "@/store/cart/cart-selector";
 import {selectCurrentUser} from "@/store/user/user-selector";
+import {clearCart} from "@/store/cart/cart-action";
 
 const UserCartModule = () => {
 
@@ -21,7 +22,7 @@ const UserCartModule = () => {
     const dispatch = useDispatch();
     const Router = useRouter();
     const cartItems = useSelector(selectCartItems);
-    const user = useSelector(selectCurrentUser);
+    const carTotal = useSelector(selectCartTotal);
 
     const { nameOfRestaurant, numberOfTable } = Router.query;
     const restaurant: rest = {
@@ -45,19 +46,25 @@ const UserCartModule = () => {
 
 
     const SendOrderOnClick = async () => {
-        dispatch(addItemStart({
-            itemsToAdd: cartItems,
-            rest: restaurant
-        }));
+        if ((carTotal !== 0) || (orderComment !== "")) {
 
-        setIsOrderSent(true);
+            try {
+                dispatch(addItemStart({
+                    itemsToAdd: cartItems,
+                    rest: restaurant,
+                    orderComments: orderComment,
+                }));
 
+                setIsOrderSent(true);
+                dispatch(clearCart());
+                setOrderComment('');
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            alert('Добавьте что-нибудь в заказ или добавьте комментарий')
+        }
     }
-
-    const closeOrderOnClick = () => {
-        setIsOrderSent(false);
-    }
-
 
 
 
@@ -98,7 +105,7 @@ const UserCartModule = () => {
         }
     else if (isOrderSent) {
         return(
-            <UserCartOrderSendWindow routeOnClick={closeOrderOnClick} />
+            <UserCartOrderSendWindow />
         )
     } else {
         return (

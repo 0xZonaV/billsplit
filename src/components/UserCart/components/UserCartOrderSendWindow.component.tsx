@@ -5,8 +5,21 @@ import {
 } from "@/components/OrderCompleteScreen/OrderComplite.style";
 import {Button} from "@mui/material";
 import {FC} from "react";
+import {useRouter} from "next/router";
 
-const UserCartOrderSendWindow: FC<{ routeOnClick: () => void }> = ({ routeOnClick }) => {
+const UserCartOrderSendWindow: FC = () => {
+
+    const Router = useRouter();
+    const { nameOfRestaurant, numberOfTable } = Router.query;
+    const routeToFinalize = () => {
+        Router.push(`/${nameOfRestaurant}/table/${numberOfTable}/finalize`);
+    }
+
+    const routeToMenu = () => {
+        Router.push(`/${nameOfRestaurant}/table/${numberOfTable}/menu`);
+    }
+
+
     return(
         <OrderCompletedBackground>
             <OrderCompleteBox>
@@ -14,7 +27,7 @@ const UserCartOrderSendWindow: FC<{ routeOnClick: () => void }> = ({ routeOnClic
                 мы начали готовить ваш заказ
             </OrderCompleteText>
             <Button
-                onClick={routeOnClick}
+                onClick={routeToFinalize}
                 sx={{
                     background: "linear-gradient(89.74deg, #BADCFF 8.19%, #ACB4FF 120.64%)",
                     borderRadius: "15px",
@@ -34,7 +47,7 @@ const UserCartOrderSendWindow: FC<{ routeOnClick: () => void }> = ({ routeOnClic
                 Оплатить счет
             </Button>
                 <Button
-                    onClick={routeOnClick}
+                    onClick={routeToMenu}
                     sx={{
                         background: "#D3F0E6",
                         borderRadius: "15px",
