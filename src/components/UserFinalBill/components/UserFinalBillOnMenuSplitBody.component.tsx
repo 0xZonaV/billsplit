@@ -6,6 +6,8 @@ import {FC} from "react";
 import UserFinalBillMainFormAddTipsButton
     from "@/components/UserFinalBill/components/UserFinalBillMainFormAddTipsButton.component";
 import {UserData} from "@/utils/firebase/firebase.utils";
+import {useSelector} from "react-redux";
+import {selectCurrentUser} from "@/store/user/user-selector";
 
 type OnMenuSplitProps = {
     NewUserTableList: () => UserData[];
@@ -15,12 +17,23 @@ type OnMenuSplitProps = {
 }
 
 const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ tipsAmount, selectedUser, onAvatarClick, NewUserTableList }) => {
+    const currentUser = useSelector(selectCurrentUser);
+
     return(
         <div style={{ overflow: "visible" }}>
             <UserFinalBillAvatars selectedUser={selectedUser} onAvatarClick={onAvatarClick} NewUserTableList={NewUserTableList} />
             <UserFinalBillList selectedUser={selectedUser} NewUserTableList={NewUserTableList} tipsAmount={tipsAmount} />
-            <UserFinalBillPaymentMethodButton />
-            <UserFinalBillMainFormAddTipsButton />
+
+            { (currentUser) && (selectedUser === currentUser.id) ?
+                (
+                    <>
+                        <UserFinalBillPaymentMethodButton />
+                        <UserFinalBillMainFormAddTipsButton />
+                    </>
+                )
+                :
+                <></>
+            }
         </div>
     )
 }

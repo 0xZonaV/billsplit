@@ -71,6 +71,19 @@ const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
         setSelectedUser(id);
     }
 
+    const TableTotal = () => {
+        return NewUserTableList().reduce((sum, element) => {
+            return sum + element.userOrder.items.reduce(
+                (sum, element) =>
+                    sum + (element.price * element.quantity), 0
+            )
+        }, 0)
+    }
+
+
+
+
+
     return(
         <UserFinalBillFormBox>
             <UserFinalBillHeader />
@@ -79,7 +92,7 @@ const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
             { isSplitOnMenuFocused ?
                 <UserFinalBillOnMenuSplitBody NewUserTableList={NewUserTableList} selectedUser={selectedUser} onAvatarClick={onAvatarClick} tipsAmount={tipsAmount} />
                 :
-                <UserFinalBillSplitEqual />
+                <UserFinalBillSplitEqual NewUserTableList={NewUserTableList} totalTableAmount={TableTotal()} />
             }
 
         </UserFinalBillFormBox>

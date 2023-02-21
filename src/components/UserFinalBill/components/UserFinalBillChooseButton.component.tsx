@@ -1,23 +1,17 @@
 import {
-    UserFinalBillChooseButton,
+    UserFinalBillChooseButton, UserFinalBillChooseButtonFocused,
     UserFinalBillChooseButtonsBox
 } from "@/components/UserFinalBill/style/UserFinalBillMainForm.style";
 import {FC} from "react";
 
 const UserFinalBillChooseButtons: FC<{ isSplitOnMenuFocused: boolean, changeFocus: () => void }> = ({ isSplitOnMenuFocused, changeFocus }) => {
 
-    const buttonUnderlineStyle = {
-        borderBottom: "3px solid #51B462",
-        paddingBottom: "10px"
-    }
-
-
     if (isSplitOnMenuFocused) {
         return (
             <UserFinalBillChooseButtonsBox>
-                <UserFinalBillChooseButton style={buttonUnderlineStyle}>
+                <UserFinalBillChooseButtonFocused>
                     По позициям меню
-                </UserFinalBillChooseButton>
+                </UserFinalBillChooseButtonFocused>
                 <UserFinalBillChooseButton onClick={changeFocus}>
                     Поровну
                 </UserFinalBillChooseButton>
@@ -29,9 +23,9 @@ const UserFinalBillChooseButtons: FC<{ isSplitOnMenuFocused: boolean, changeFocu
                 <UserFinalBillChooseButton onClick={changeFocus}>
                     По позициям меню
                 </UserFinalBillChooseButton>
-                <UserFinalBillChooseButton style={buttonUnderlineStyle}>
+                <UserFinalBillChooseButtonFocused>
                     Поровну
-                </UserFinalBillChooseButton>
+                </UserFinalBillChooseButtonFocused>
             </UserFinalBillChooseButtonsBox>
         )
     }

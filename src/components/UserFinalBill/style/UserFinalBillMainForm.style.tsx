@@ -41,6 +41,33 @@ export const UserFinalBillChooseButton = styled.div`
   padding: 5% 0 0 0;
   color: #33394B;
 `
+
+export const UserFinalBillChooseButtonFocused = styled.div`
+  font-family: 'Doloman Pavljenko';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 23px;
+
+  display: flex;
+  padding: 5% 0 10px 0;
+  color: #33394B;
+  border-bottom: 3px solid #51B462;
+  
+  animation: borderAnim 0.5s ease-in-out;
+  
+  @keyframes borderAnim {
+    0% {
+      border-bottom: 3px solid #EBEFF3;
+    }
+    
+    100% {
+      border-bottom: 3px solid #51B462;
+    }
+  }
+  
+`
+
 export const UserFinalBillBackground = styled.div`
     background-image: url("/FinalBillBackground.svg");
     background-repeat: no-repeat;

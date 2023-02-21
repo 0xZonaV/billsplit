@@ -5,6 +5,7 @@ export const UserFinalBillAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #159947;
 
 
   width: 61px;

@@ -1,55 +1,39 @@
 import {
-    UserCardName,
-    UserFinalBillAvatar,
-    UserFinalBillCardBackground,
     UserFinalBillUserCardBox
 } from "@/components/UserFinalBill/style/UserFinalBillSplitEqualUserCard.style";
-import AvatarPeople from "../../../../public/AvatarPeople.svg";
+import {FC} from "react";
+import {UserData} from "@/utils/firebase/firebase.utils";
+import {useSelector} from "react-redux";
+import {selectCurrentUser} from "@/store/user/user-selector";
+import UserFinalBillUserCardComponent from "@/components/UserFinalBill/components/UserFinalBillUserCard.component";
 
-const UserFinalBillSplitEqualUserCard = () => {
+type EqualSplit = {
+    totalTableAmount: number;
+    NewUserTableList: () => UserData[];
+}
+
+const UserFinalBillSplitEqualUserCard: FC<EqualSplit> = ({totalTableAmount, NewUserTableList}) => {
+
+    const currentUser = useSelector(selectCurrentUser);
+
+    const totalUsers = NewUserTableList().length;
+    const amountForPerson = Math.ceil((totalTableAmount/totalUsers));
+
+    const UserCardMap = NewUserTableList().map(
+        (user) => {
+
+            const nameToDisplay = () => {
+                if ((currentUser) && (currentUser.id === user.id)) {
+                    return "Вы"
+                } else return user.displayName
+            }
+
+            return <UserFinalBillUserCardComponent amount={amountForPerson} name={nameToDisplay()} key={user.id} />
+    })
+
     return(
         <UserFinalBillUserCardBox>
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-                <UserCardName>
-                    ZonaV
-                </UserCardName>
-                <UserCardName>
-                    700
-                </UserCardName>
-            </UserFinalBillCardBackground>
-
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-            </UserFinalBillCardBackground>
-
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-            </UserFinalBillCardBackground>
-
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-            </UserFinalBillCardBackground>
-
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-            </UserFinalBillCardBackground>
-
-            <UserFinalBillCardBackground>
-                <UserFinalBillAvatar style={{ backgroundColor: "#5DF17E" }}>
-                    <AvatarPeople />
-                </UserFinalBillAvatar>
-            </UserFinalBillCardBackground>
+            {UserCardMap}
         </UserFinalBillUserCardBox>
     )
 }

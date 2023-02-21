@@ -4,7 +4,7 @@ import {
 import {Table, TableBody, TableContainer} from "@mui/material";
 import UserFinalBillTotalCostComponent from "@/components/UserFinalBill/components/UserFinalBillTotalCost.component";
 import UserFinalBillListRow from "@/components/UserFinalBill/components/UserFinalBillListRow.component";
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "@/store/user/user-selector";
 import {UserData} from "@/utils/firebase/firebase.utils";
@@ -18,21 +18,6 @@ type BillListProps = {
 const UserFinalBillList: FC<BillListProps> = ({tipsAmount, selectedUser, NewUserTableList}) => {
 
     const currentUser = useSelector(selectCurrentUser);
-    const [billTotal, setBillTotal] = useState(0);
-
-    useEffect(
-        () => {
-            if (currentUser) {
-                setBillTotal(
-                    currentUser.userOrder.items.reduce(
-                        (sum, element) =>
-                            sum + (element.price * element.quantity), 0
-                    ) + tipsAmount
-                )
-            }
-        }, [tipsAmount, currentUser]
-    )
-
 
     const userBill = (userId: string) => {
         const user = NewUserTableList().find(element => element.id === userId);
@@ -43,6 +28,15 @@ const UserFinalBillList: FC<BillListProps> = ({tipsAmount, selectedUser, NewUser
                 } else return
             })
         }
+    }
+
+    const userBillTotal = (userId: string) => {
+        const user = NewUserTableList().find(element => element.id === userId);
+        if (user) {
+            return user.userOrder.items.reduce((sum, element) =>
+                sum + (element.quantity * element.price)
+                , 0)
+        } else return 0
     }
 
 
@@ -74,7 +68,8 @@ const UserFinalBillList: FC<BillListProps> = ({tipsAmount, selectedUser, NewUser
                     </TableBody>
                 </Table>
             </TableContainer>
-            <UserFinalBillTotalCostComponent billTotal={billTotal} />
+
+            <UserFinalBillTotalCostComponent billTotal={userBillTotal(selectedUser)} />
         </UserFinalBillBackground>
     )
 }
