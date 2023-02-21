@@ -5,12 +5,20 @@ import UserFinalBillPaymentMethodButton
 import {FC} from "react";
 import UserFinalBillMainFormAddTipsButton
     from "@/components/UserFinalBill/components/UserFinalBillMainFormAddTipsButton.component";
+import {UserData} from "@/utils/firebase/firebase.utils";
 
-const UserFinalBillOnMenuSplitBody: FC<{ tipsAmount: number }> = ({ tipsAmount }) => {
+type OnMenuSplitProps = {
+    NewUserTableList: () => UserData[];
+    onAvatarClick: (id: string) => void;
+    selectedUser: string;
+    tipsAmount: number;
+}
+
+const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ tipsAmount, selectedUser, onAvatarClick, NewUserTableList }) => {
     return(
         <div style={{ overflow: "visible" }}>
-            <UserFinalBillAvatars />
-            <UserFinalBillList tipsAmount={tipsAmount} />
+            <UserFinalBillAvatars selectedUser={selectedUser} onAvatarClick={onAvatarClick} NewUserTableList={NewUserTableList} />
+            <UserFinalBillList selectedUser={selectedUser} NewUserTableList={NewUserTableList} tipsAmount={tipsAmount} />
             <UserFinalBillPaymentMethodButton />
             <UserFinalBillMainFormAddTipsButton />
         </div>

@@ -7,8 +7,15 @@ import UserFinalBillListRow from "@/components/UserFinalBill/components/UserFina
 import {FC, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "@/store/user/user-selector";
+import {UserData} from "@/utils/firebase/firebase.utils";
 
-const UserFinalBillList: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
+type BillListProps = {
+    NewUserTableList: () => UserData[];
+    selectedUser: string;
+    tipsAmount: number;
+}
+
+const UserFinalBillList: FC<BillListProps> = ({tipsAmount, selectedUser, NewUserTableList}) => {
 
     const currentUser = useSelector(selectCurrentUser);
     const [billTotal, setBillTotal] = useState(0);
@@ -27,16 +34,15 @@ const UserFinalBillList: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
     )
 
 
-
-    const currentUserBill = () => {
-        if (currentUser) {
-           const userOrder = currentUser.userOrder.items;
-           return userOrder.map((element) => {
-               return <UserFinalBillListRow price={element.price} name={element.name} quantity={element.quantity} key={element.id} />
-           })
+    const userBill = (userId: string) => {
+        const user = NewUserTableList().find(element => element.id === userId);
+        if (user) {
+            return user.userOrder.items.map((element) => {
+                if (element.quantity > 0) {
+                    return <UserFinalBillListRow price={element.price} name={element.name} quantity={element.quantity} key={element.id} />
+                } else return
+            })
         }
-
-        return <></>
     }
 
 
@@ -56,8 +62,15 @@ const UserFinalBillList: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
                     tableLayout: "fixed",
                 }}>
                     <TableBody>
-                        {currentUserBill()}
-                        <UserFinalBillListRow price={tipsAmount} name={"Чаевые"} quantity={1} />
+                        {userBill(selectedUser)}
+                        { (currentUser) && (selectedUser === currentUser.id) ?
+                            <UserFinalBillListRow
+                                price={tipsAmount}
+                                name={"Чаевые"}
+                                quantity={1} />
+                            : <></>
+                        }
+
                     </TableBody>
                 </Table>
             </TableContainer>

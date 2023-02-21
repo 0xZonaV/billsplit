@@ -68,7 +68,7 @@ export const checkUserSession = withMatcher((rest: rest):CheckUserSession => cre
 
 export const googleSignInStart = withMatcher((rest: rest):GoogleSignInStart => createAction(GOOGLE_SIGN_IN_START, rest));
 
-export const signInSuccess = withMatcher((user: UserData & {id: string}):SignInSuccess => createAction(SIGN_IN_SUCCESS, user));
+export const signInSuccess = withMatcher((user: UserData & {uId: string}):SignInSuccess => createAction(SIGN_IN_SUCCESS, user));
 
 export const signInFailed = withMatcher((error: Error): SignInFailed => createAction(SIGN_IN_FAILED, error));
 

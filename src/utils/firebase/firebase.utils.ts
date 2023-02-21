@@ -59,6 +59,8 @@ export type UserOrder = {
 
 export type UserData = {
     displayName: string;
+
+    id: "";
     email: string;
     role: string;
     orderComments: string[];
@@ -94,9 +96,12 @@ export const createUserDocumentFromAuth = async (
 
         const orderComments: string[] = [];
 
+        const id = userAuth.uid;
+
         try {
             await setDoc(userDocRef, {
                 displayName,
+                id,
                 email,
                 role,
                 userOrder,
