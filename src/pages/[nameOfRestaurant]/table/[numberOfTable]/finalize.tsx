@@ -9,16 +9,20 @@ import UserFinalBillMainForm from "@/components/UserFinalBill/components/UserFin
 import UserPaymentByCard from "@/components/UserFinalBillPay/components/UserPaymentByCard.component";
 import UserPaymentMethodChoose from "@/components/UserFinalBillPay/components/UserPaymentMethodChoose.component";
 import UserSuccessfulPaymentScreen from "@/components/UserFinalBillPay/components/UserSuccesfulPaymnetScreen.component";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {setMainForm} from "@/store/finalizeWindow/finalize-action";
 
 const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
 
     const WindowToRender = useSelector(selectWindow);
+    const dispatch = useDispatch();
 
     const {agreePopup, amountPopup, choosePaymentMethod, successfulPayment, cardPayment, mainForm} = WindowToRender;
+    const [tipsAmount, setTipsAmount] = useState(0);
 
-    const dispatch = useDispatch();
+    const setTipsInPopup = (amount: number) => {
+        setTipsAmount(amount);
+    }
 
     useEffect(
         () => {
@@ -34,10 +38,10 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
             return <UserFinalBillTip />;
 
         case (amountPopup) :
-            return <UserFinalBillTipSummEnterComponent />;
+            return <UserFinalBillTipSummEnterComponent setTipsInPopup={setTipsInPopup} />;
 
         case (mainForm) :
-            return <UserFinalBillMainForm />;
+            return <UserFinalBillMainForm tipsAmount={tipsAmount} />;
 
         case (cardPayment) :
             return <UserPaymentByCard />;

@@ -15,7 +15,7 @@ export const UserFinalBillAgreePopup = styled.div`
   height: 178px;
 
   background: #EBEFF3;
-  border-radius: 23px;
+  border-radius: 15px;
   display: inline-block;
   justify-content: center;
 `
@@ -36,7 +36,7 @@ export const UserFinalBillAgreePopupTitle = styled.div`
 export const UserFinalBillAgreePopupButton = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 65px 0 65px;
+  padding: 0 45px 0 45px;
   margin-top: 30px;
 `
 
@@ -62,7 +62,7 @@ export const UserFinalBillSummHeader = styled.div`
 
 export const UserFinalBillSummTextArea = styled.input`
   resize: none;
-  border-radius: 9px;
+  border-radius: 15px;
   background: white;
   border: 0;
   &:focus {

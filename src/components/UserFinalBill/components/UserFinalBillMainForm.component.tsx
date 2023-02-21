@@ -3,11 +3,11 @@ import UserFinalBillChooseButtons from "@/components/UserFinalBill/components/Us
 import {
     UserFinalBillFormBox,
 } from "@/components/UserFinalBill/style/UserFinalBillMainForm.style";
-import {useState} from "react";
+import {FC, useState} from "react";
 import UserFinalBillOnMenuSplitBody from "@/components/UserFinalBill/components/UserFinalBillOnMenuSplitBody.component";
 import UserFinalBillSplitEqual from "@/components/UserFinalBill/components/UserFinalBillSplitEqual.component";
 
-const UserFinalBillMainForm = () => {
+const UserFinalBillMainForm: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
 
     const [isSplitOnMenuFocused, setIsSplitOnMenuFocused] = useState(true);
 
@@ -21,7 +21,7 @@ const UserFinalBillMainForm = () => {
             <UserFinalBillChooseButtons changeFocus={changeFocusOnClick} isSplitOnMenuFocused={isSplitOnMenuFocused} />
 
             { isSplitOnMenuFocused ?
-                <UserFinalBillOnMenuSplitBody />
+                <UserFinalBillOnMenuSplitBody tipsAmount={tipsAmount} />
                 :
                 <UserFinalBillSplitEqual />
             }

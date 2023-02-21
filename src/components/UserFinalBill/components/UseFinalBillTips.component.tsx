@@ -2,21 +2,21 @@ import {Box} from "@mui/system";
 import {UserFinalBillTotalCost} from "@/components/UserFinalBill/style/UserFinalBillMainForm.style";
 import {FC} from "react";
 
-const UserFinalBillTotalCostComponent:FC<{ billTotal: number }> = ({ billTotal }) => {
+const UseFinalBillTips: FC<{ tipsAmount: number }> = ({tipsAmount}) => {
     return(
         <Box
             sx={{
                 justifyContent: "space-between",
                 display: "flex",
-                maxHeight: "100px",
-                height: "100px",
+                maxHeight: "25px",
+                height: "25px",
                 width: "316px",
-                marginTop: "10px",
+                marginTop: "5px",
                 alignItems: "center"
             }}
         >
             <UserFinalBillTotalCost>
-                Итого:
+                Чаевые:
             </UserFinalBillTotalCost>
             <UserFinalBillTotalCost
                 style={{
@@ -24,10 +24,10 @@ const UserFinalBillTotalCostComponent:FC<{ billTotal: number }> = ({ billTotal }
                     padding: "0 20px 0 0"
                 }}
             >
-                {billTotal}
+                {tipsAmount}
             </UserFinalBillTotalCost>
         </Box>
     )
 }
 
-export default UserFinalBillTotalCostComponent;
+export default UseFinalBillTips;
