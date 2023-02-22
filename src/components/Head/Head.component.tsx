@@ -1,9 +1,11 @@
 import Head from "next/head";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {fetchMenuStart, fetchWaiterStart} from "@/store/menu/menu-action";
 import {useRouter} from "next/router";
 import {checkUserSession, rest} from "@/store/user/user-action";
+import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
+import {setNewUsersList} from "@/store/orderInfo/orderIndo-action";
 
 const HeadComponent = () => {
 
@@ -11,6 +13,8 @@ const HeadComponent = () => {
     const Router = useRouter();
 
     const { nameOfRestaurant, numberOfTable } = Router.query;
+    const users = useSelector(selectTableUsers);
+    const currentUser = useSelector(selectCurrentUser);
 
     const restaurant: rest = {
         nameOfRestaurant: nameOfRestaurant as string,
@@ -21,7 +25,15 @@ const HeadComponent = () => {
         dispatch(fetchMenuStart());
         dispatch(fetchWaiterStart(restaurant));
         dispatch(checkUserSession(restaurant));
-    }, [dispatch])
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (users) {
+            dispatch(setNewUsersList(users, currentUser))
+        }
+    }
+    ,[users, currentUser]
+    )
 
     return(
         <Head>

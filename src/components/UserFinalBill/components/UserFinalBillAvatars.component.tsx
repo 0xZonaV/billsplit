@@ -1,20 +1,22 @@
 import {FC} from "react";
-import {UserData} from "@/utils/firebase/firebase.utils";
 import UserFinalBillGuestAvatar from "@/components/UserFinalBill/components/UserFinalBillGuestAvatar.component";
+import {useSelector} from "react-redux";
+import {selectNewUsersList} from "@/store/orderInfo/orderInfo-selector";
 
 
 type AvatarsProps = {
-    NewUserTableList: () => UserData[];
     onAvatarClick: (id: string) => void;
     selectedUser: string;
 
 }
 
-const UserFinalBillAvatars: FC<AvatarsProps> = ({ NewUserTableList, selectedUser, onAvatarClick }) => {
+const UserFinalBillAvatars: FC<AvatarsProps> = ({ selectedUser, onAvatarClick }) => {
+
+    const NewUsersTableList = useSelector(selectNewUsersList);
 
     const UsersAvatar = () => {
             return (
-                NewUserTableList().map(
+                NewUsersTableList.map(
                     (element, index) => {
                     return <UserFinalBillGuestAvatar
                         onAvatarClick={onAvatarClick}

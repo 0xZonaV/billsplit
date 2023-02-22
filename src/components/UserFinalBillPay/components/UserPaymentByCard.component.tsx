@@ -7,14 +7,26 @@ import {
     UserPaymentByCardTitle
 } from "@/components/UserFinalBillPay/style/UserPaymentByCard.style";
 import {Button} from "@mui/material";
-import {FC} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setSuccessful} from "@/store/finalizeWindow/finalize-action";
+import {selectIsMethodMenu, selectUserTotalEqual, selectUserTotalMenu} from "@/store/orderInfo/orderInfo-selector";
 
-const UserPaymentByCard: FC<{ totalToPay: number }> = ({ totalToPay }) => {
+
+
+const UserPaymentByCard = () => {
     const dispatch = useDispatch();
+    const isMethodMenu = useSelector(selectIsMethodMenu);
+    const totalToPay = () => {
+        if (isMethodMenu) {
+            return useSelector(selectUserTotalMenu)
+        }
+
+        return useSelector(selectUserTotalEqual)
+    }
+
 
     const onClick = () => {
+
         dispatch(setSuccessful());
     }
 
@@ -103,7 +115,7 @@ const UserPaymentByCard: FC<{ totalToPay: number }> = ({ totalToPay }) => {
                     }}
                             onClick={onClick}
                     >
-                        Оплатить {totalToPay}₽
+                        Оплатить {totalToPay()}₽
                     </Button>
 
                 </UserPaymentByCardForm>

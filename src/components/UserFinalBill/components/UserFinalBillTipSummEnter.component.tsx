@@ -11,9 +11,10 @@ import {
     UserCartPopupText,
     UserCartPopupTextAndCloseBox
 } from "@/components/UserCart/styles/UserCartPopup.style";
-import {ChangeEvent, FC, useState} from "react";
+import {ChangeEvent, useState} from "react";
+import {setTips} from "@/store/orderInfo/orderIndo-action";
 
-const UserFinalBillTipSummEnter: FC<{ setTipsInPopup: (amount: number) => void }> = ({ setTipsInPopup }) => {
+const UserFinalBillTipSummEnter = () => {
 
     const dispatch = useDispatch();
 
@@ -23,10 +24,10 @@ const UserFinalBillTipSummEnter: FC<{ setTipsInPopup: (amount: number) => void }
         setInputValue(event.target.value);
     }
 
-    const setTips = () => {
+    const setTipsOnClick = () => {
 
         /* TODO: Add logic to add tips into firebase */
-        setTipsInPopup(parseInt(inputValue));
+        dispatch(setTips(parseInt(inputValue)));
         setInputValue("");
         dispatch(setMainForm());
     }
@@ -42,7 +43,7 @@ const UserFinalBillTipSummEnter: FC<{ setTipsInPopup: (amount: number) => void }
                     <UserCartPopupText style={{ margin: "10% 0 0 32%" }}>
                         Чаевые
                     </UserCartPopupText>
-                    <UserCartCloseButtonStyle />
+                    <UserCartCloseButtonStyle onClick={ dispatch(setMainForm()) } />
                 </UserCartPopupTextAndCloseBox>
 
 
@@ -70,7 +71,7 @@ const UserFinalBillTipSummEnter: FC<{ setTipsInPopup: (amount: number) => void }
 
                         color: "#EBEFF3",
                     }}
-                            onClick={setTips}
+                            onClick={setTipsOnClick}
                     >
                         Оставить чаевые
                     </Button>

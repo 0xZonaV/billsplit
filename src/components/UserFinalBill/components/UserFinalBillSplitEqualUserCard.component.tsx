@@ -1,23 +1,19 @@
 import {
     UserFinalBillUserCardBox
 } from "@/components/UserFinalBill/style/UserFinalBillSplitEqualUserCard.style";
-import {FC} from "react";
-import {UserData} from "@/utils/firebase/firebase.utils";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "@/store/user/user-selector";
 import UserFinalBillUserCardComponent from "@/components/UserFinalBill/components/UserFinalBillUserCard.component";
+import {selectNewUsersList, selectUserTotalEqual} from "@/store/orderInfo/orderInfo-selector";
 
-type EqualSplit = {
-    amountPerPerson: number;
-    NewUserTableList: () => UserData[];
-}
-
-const UserFinalBillSplitEqualUserCard: FC<EqualSplit> = ({amountPerPerson , NewUserTableList}) => {
+const UserFinalBillSplitEqualUserCard = () => {
 
     const currentUser = useSelector(selectCurrentUser);
+    const NewUsersTableList = useSelector(selectNewUsersList);
+    const amountPerPerson = useSelector(selectUserTotalEqual);
 
 
-    const UserCardMap = NewUserTableList().map(
+    const UserCardMap = NewUsersTableList.map(
         (user,index) => {
 
             const nameToDisplay = () => {

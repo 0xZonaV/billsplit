@@ -9,8 +9,10 @@ import UserFinalBillMainForm from "@/components/UserFinalBill/components/UserFin
 import UserPaymentByCard from "@/components/UserFinalBillPay/components/UserPaymentByCard.component";
 import UserPaymentMethodChoose from "@/components/UserFinalBillPay/components/UserPaymentMethodChoose.component";
 import UserSuccessfulPaymentScreen from "@/components/UserFinalBillPay/components/UserSuccesfulPaymnetScreen.component";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {setMainForm} from "@/store/finalizeWindow/finalize-action";
+import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
+import {setTableTotal, setUserTotalEqual, setUserTotalMenu} from "@/store/orderInfo/orderIndo-action";
 
 const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
 
@@ -18,12 +20,25 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
     const dispatch = useDispatch();
 
     const {agreePopup, amountPopup, choosePaymentMethod, successfulPayment, cardPayment, mainForm} = WindowToRender;
-    const [tipsAmount, setTipsAmount] = useState(0);
-    const [totalToPay, setTotalToPay] = useState(0);
 
-    const setTipsInPopup = (amount: number) => {
-        setTipsAmount(amount);
-    }
+
+    const users = useSelector(selectTableUsers);
+    const currentUser = useSelector(selectCurrentUser);
+
+    useEffect(
+        () => {
+            if (users) {
+                dispatch(setTableTotal(users));
+                dispatch(setUserTotalEqual(users));
+            }
+
+            if (currentUser) {
+                dispatch(setUserTotalMenu(currentUser))
+            }
+
+        },
+        [users, currentUser]
+    );
 
     useEffect(
         () => {
@@ -39,13 +54,13 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
             return <UserFinalBillTip />;
 
         case (amountPopup) :
-            return <UserFinalBillTipSummEnterComponent setTipsInPopup={setTipsInPopup} />;
+            return <UserFinalBillTipSummEnterComponent />;
 
         case (mainForm) :
-            return <UserFinalBillMainForm setTotalToPay={setTotalToPay} tipsAmount={tipsAmount} />;
+            return <UserFinalBillMainForm />;
 
         case (cardPayment) :
-            return <UserPaymentByCard totalToPay={totalToPay} />;
+            return <UserPaymentByCard />;
 
         case (choosePaymentMethod) :
             return <UserPaymentMethodChoose />;
