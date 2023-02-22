@@ -14,7 +14,7 @@
 ## Getting Started
 Install npm packages
 
-1. Clone this repo: `git clone https://github.com/netlify-templates/next-netlify-starter.git`
+1. Clone this repo: `git clone https://github.com/0xZonaV/billsplit/`
 2. Navigate to the directory and run `npm install`
 3. Run `npm run dev`
 4. Connect to [Netlify](https://url.netlify.com/Bk4UicocL)
