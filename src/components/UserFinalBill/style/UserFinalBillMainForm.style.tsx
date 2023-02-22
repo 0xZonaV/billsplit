@@ -74,7 +74,7 @@ export const UserFinalBillBackground = styled.div`
     background-position: center;
   
     height: 252px;
-    width: 314px;
+    width: 334px;
     margin-top: 10%;
 
     align-items: flex-start;
@@ -106,6 +106,6 @@ export const UserFinalBillTotalCost = styled.div`
   justify-content: left;
   display: flex;
 
-  padding: 0 0 0 20px;
+  padding: 0 0 0 30px;
 `
 

@@ -19,6 +19,7 @@ const UserFinalBillOnMenuSplitBody: FC<OnMenuSplitProps> = ({ selectedUser, onAv
     return(
         <div style={{ overflow: "visible" }}>
             <UserFinalBillAvatars selectedUser={selectedUser} onAvatarClick={onAvatarClick} />
+
             <UserFinalBillList selectedUser={selectedUser} />
 
             { (currentUser) && (selectedUser === currentUser.id) ?

@@ -10,7 +10,7 @@ import UserFinalBillMainFormAddTipsButton
 const UserFinalBillSplitEqual = () => {
 
     return(
-        <div style={{ overflow: "visible" }}>
+        <div style={{ overflow: "visible", maxWidth: "334px" }}>
             <UserFinalBillSplitEqualUserCard />
             <UserFinalBillPaymentMethodButton />
             <UserFinalBillMainFormAddTipsButton />

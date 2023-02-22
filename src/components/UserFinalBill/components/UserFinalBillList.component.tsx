@@ -72,7 +72,7 @@ const UserFinalBillList: FC<BillListProps> = ({selectedUser}) => {
                 </Table>
             </TableContainer>
 
-            <UserFinalBillTotalCostComponent billTotal={billTotalByUserId(selectedUser)} />
+            <UserFinalBillTotalCostComponent tips={tipsAmount} billTotal={billTotalByUserId(selectedUser)} />
         </UserFinalBillBackground>
     )
 }

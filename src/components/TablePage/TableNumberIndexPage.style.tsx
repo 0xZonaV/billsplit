@@ -26,20 +26,22 @@ export const GoogleSignInButton = styled(Button)`
 
       text-decoration: none;
       white-space: nowrap;
-      display: block;
+      display: flex;
+      align-items: center;
+      
       
       font-family: 'Doloman Pavljenko';
       font-style: normal;
       font-weight: 300;
       font-size: 22px;
       text-transform: none;
-
-      color: #FFFF;
+      color: white;
     }
 
   & .MuiButton-startIcon{
     margin-right: 10px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     vertical-align: middle;
   }
 `

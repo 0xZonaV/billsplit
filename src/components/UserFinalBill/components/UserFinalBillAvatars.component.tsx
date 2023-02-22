@@ -34,8 +34,8 @@ const UserFinalBillAvatars: FC<AvatarsProps> = ({ selectedUser, onAvatarClick })
     return (
         <div
             style={{
-                width: "314px",
-                maxWidth: "314px",
+                width: "334px",
+                maxWidth: "334px",
                 display: "flex",
                 justifyContent: "left",
                 marginTop: "30px",

@@ -26,7 +26,7 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
             }
         },
         []
-    )
+    );
 
     switch (true) {
         case (agreePopup) :

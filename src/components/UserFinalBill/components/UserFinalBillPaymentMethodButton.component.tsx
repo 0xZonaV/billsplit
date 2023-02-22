@@ -11,7 +11,7 @@ const UserFinalBillPaymentMethodButton = () => {
     }
 
     return(
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <div style={{display: "flex", justifyContent: "center", width: "334px"}}>
             <Button sx={{
                 background: "linear-gradient(90.57deg, #1DA04A 11.37%, #21AC44 92.16%)",
                 borderRadius: "15px",
