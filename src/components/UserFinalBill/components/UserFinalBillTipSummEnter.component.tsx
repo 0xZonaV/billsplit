@@ -32,6 +32,10 @@ const UserFinalBillTipSummEnter = () => {
         dispatch(setMainForm());
     }
 
+    const closePopup = () => {
+        dispatch(setMainForm())
+    }
+
     return(
         <UserFinalBillTipBackground>
             <UserFinalBillAgreePopup style={{
@@ -43,7 +47,7 @@ const UserFinalBillTipSummEnter = () => {
                     <UserCartPopupText style={{ margin: "10% 0 0 32%" }}>
                         Чаевые
                     </UserCartPopupText>
-                    <UserCartCloseButtonStyle onClick={ dispatch(setMainForm()) } />
+                    <UserCartCloseButtonStyle onClick={closePopup} />
                 </UserCartPopupTextAndCloseBox>
 
 
