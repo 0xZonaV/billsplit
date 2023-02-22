@@ -1,6 +1,6 @@
 import {Box} from "@mui/system";
 import {GoogleSignInButton, TableNumberIndexPageStyle} from "@/components/TablePage/TableNumberIndexPage.style";
-import GoogleIcon from "../../../public/googleIcon.svg";
+import GoogleIcon from "../../../public/icons/googleIcon.svg";
 import {googleSignInStart} from "@/store/user/user-action";
 import {useDispatch} from "react-redux";
 import {FC} from "react";

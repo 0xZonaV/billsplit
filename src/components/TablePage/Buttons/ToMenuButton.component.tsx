@@ -1,5 +1,5 @@
 import {Button} from "@mui/material";
-import BookIcon from "../../../../public/bookIcon.svg"
+import BookIcon from "../../../../public/icons/bookIcon.svg"
 import {Box} from "@mui/system";
 import {useRouter} from "next/router";
 

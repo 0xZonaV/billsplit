@@ -1,5 +1,5 @@
 import {Box} from "@mui/system";
-import AvatarPeople from "../../../../public/AvatarPeople.svg";
+import AvatarPeople from "../../../../public/icons/AvatarPeople.svg";
 import {FC} from "react";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "@/store/user/user-selector";

@@ -1,5 +1,15 @@
 import styled from "styled-components";
-import CloseButton from "../../../../public/CloseButtonIccon.svg";
+import CloseButton from "../../../../public/icons/CloseButtonIcon.svg";
+
+export const UserCartPopupModuleBox = styled.div`
+  background-color: rgba(99, 99, 99, 0.5);
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center
+`
+
 export const UserCartPopupBox = styled.div`
 
   width: 320px;

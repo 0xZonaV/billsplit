@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {Button, FormControlLabel, RadioGroup} from "@mui/material";
-import CheckBoxIcon from "../../../../public/CheckBoxIcon.svg";
-import CheckBoxCheckedIcon from "../../../../public/CheckBoxIconChecked.svg";
-import CashIcon from "../../../../public/cashIcon.svg";
-import PayByCardIcon from "../../../../public/PayByCardIcon.svg";
+import CheckBoxIcon from "../../../../public/icons/CheckBoxIcon.svg";
+import CheckBoxCheckedIcon from "../../../../public/icons/CheckBoxIconChecked.svg";
+import CashIcon from "../../../../public/icons/cashIcon.svg";
+import PayByCardIcon from "../../../../public/icons/PayByCardIcon.svg";
 export const UserPaymentMethodChooseBox = styled.div`
   width: 310px;
   display: flex;

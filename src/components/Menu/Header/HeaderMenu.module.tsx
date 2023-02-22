@@ -11,12 +11,12 @@ const HeaderMenuModule: FC<{ setCategoryToRender: (categoryToRender: string) => 
 
     const Router = useRouter();
 
-    const { nameOfRestaurant, numberOfTable } = Router.query;
+    const { nameOfRestaurant } = Router.query;
 
     return(
         <HeaderMenuStyle>
             <Grid container sx={{ padding: "10% 5% 0% 5%" }}>
-                <BackButtonComponent pushToUrl={`/${nameOfRestaurant}/table/${numberOfTable}`} />
+                <BackButtonComponent />
                 <HeaderMenuRestTitle nameOfRestaurant={nameOfRestaurant as string} />
                 <CartIcon />
             </Grid>

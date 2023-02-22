@@ -9,7 +9,7 @@ import {TableNumberGuestsAvatarEllipse} from "@/components/TablePage/Body/style/
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {selectIsWaiterLoading, selectWaitersData} from "@/store/menu/menu-selector";
-import CheckIcon from "../../../../public/checkIcon.svg";
+import CheckIcon from "../../../../public/icons/checkIcon.svg";
 
 const WaiterCardModule = () => {
 

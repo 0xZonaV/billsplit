@@ -1,4 +1,4 @@
-import BackIcon from "../../../../../public/icons/BackIcon.svg";
+import BackIcon from "../../../../public/icons/BackIcon.svg";
 import {BackButtonEllipse, SearchIconContainer} from "@/components/Menu/Header/styles/CartIcon.styles";
 import {useRouter} from "next/router";
 
@@ -10,7 +10,7 @@ const BackButtonComponent = () => {
     }
 
     return(
-        <SearchIconContainer item xs={3}>
+        <SearchIconContainer item xs={2}>
             <BackButtonEllipse onClick={RouteBackOnClick}>
                 <BackIcon />
             </BackButtonEllipse>

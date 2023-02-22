@@ -1,5 +1,5 @@
 import {Button} from "@mui/material";
-import OrderIcon from "../../../../public/OrderIcon.svg"
+import OrderIcon from "../../../../public/icons/OrderIcon.svg"
 import {Box} from "@mui/system";
 import {useRouter} from "next/router";
 import {useSelector} from "react-redux";

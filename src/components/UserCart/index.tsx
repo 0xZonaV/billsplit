@@ -1,5 +1,3 @@
-import UserCartHeader from "@/components/UserCart/components/UserCartHeader.component";
-import {Box} from "@mui/system";
 import UserCartBodyComponent from "@/components/UserCart/components/UserCartBody.component";
 import UserCartOrderButton from "@/components/UserCart/components/UserCartOrderButton.component";
 import UserCartAddCommentsButton from "@/components/UserCart/components/UserCartAddCommentsButton.component";
@@ -10,21 +8,26 @@ import {addItemStart, rest} from "@/store/user/user-action";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {selectCartItems, selectCartTotal} from "@/store/cart/cart-selector";
-import {selectCurrentUser} from "@/store/user/user-selector";
 import {clearCart} from "@/store/cart/cart-action";
+import AppHeader from "@/components/AppHeader";
+import {AppHeaderBox, UserCartModuleBox} from "@/components/UserCart/styles/UserCartHeader.styles";
+import {UserCartPopupModuleBox} from "@/components/UserCart/styles/UserCartPopup.style";
 
 const UserCartModule = () => {
-
-    const [isPopUpRendered, setIsPopUpRendered] = useState(false);
-    const [isOrderSent, setIsOrderSent] = useState(false);
-    const [orderComment, setOrderComment] = useState("");
-
     const dispatch = useDispatch();
     const Router = useRouter();
     const cartItems = useSelector(selectCartItems);
     const carTotal = useSelector(selectCartTotal);
 
-    const { nameOfRestaurant, numberOfTable } = Router.query;
+
+    const [isPopUpRendered, setIsPopUpRendered] = useState(false);
+    const [isOrderSent, setIsOrderSent] = useState(false);
+    const [orderComment, setOrderComment] = useState("");
+
+
+    const { nameOfRestaurant, numberOfTable } = Router.query
+
+
     const restaurant: rest = {
         nameOfRestaurant: nameOfRestaurant as string,
         tableNum: numberOfTable as string
@@ -71,36 +74,21 @@ const UserCartModule = () => {
 
     if (!isPopUpRendered && !isOrderSent) {
         return(
-        <Box
-            sx={{
-                padding: "20% 10% 0 10%",
-                justifyContent: "center",
-                alignContent: "center",
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap"
-            }}
-        >
-
-            <UserCartHeader />
+        <UserCartModuleBox>
+            <AppHeaderBox>
+                <AppHeader titleText={"Ваш заказ"} />
+            </AppHeaderBox>
             <UserCartBodyComponent />
             <UserCartOrderButton sendOrder={SendOrderOnClick} />
             <UserCartAddCommentsButton OpenPopupOnClick={OpenPopupOnClick} />
-        </Box>
+        </UserCartModuleBox>
         )
     } else if (isPopUpRendered)
         {
         return (
-            <div style={{
-                backgroundColor: "rgba(99, 99, 99, 0.5)",
-                width: "100vw",
-                height: "100vh",
-                alignItems: "center",
-                display: "flex",
-                justifyContent: "center",
-            }}>
+            <UserCartPopupModuleBox>
                 <UserCartPopup ClosePopupOnClick={ClosePopupOnClick} onCommentInputChange={onCommentInputChange} inputValue={orderComment} />
-            </div>
+            </UserCartPopupModuleBox>
             )
         }
     else if (isOrderSent) {

@@ -1,4 +1,4 @@
-import ShoppingBag from "../../../../../public/ShopingBag.svg";
+import ShoppingBag from "../../../../../public/icons/ShopingBag.svg";
 import styled from "styled-components";
 import {Grid} from "@mui/material";
 

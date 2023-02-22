@@ -3,7 +3,7 @@ import {
     UserFinalBillAvatar,
     UserFinalBillCardBackground
 } from "@/components/UserFinalBill/style/UserFinalBillSplitEqualUserCard.style";
-import AvatarPeople from "../../../../public/AvatarPeople.svg";
+import AvatarPeople from "../../../../public/icons/AvatarPeople.svg";
 import {FC} from "react";
 
 const UserFinalBillUserCardComponent: FC<{ name: string, amount: number }> = ({ name, amount }) => {

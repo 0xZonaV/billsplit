@@ -1,4 +1,3 @@
-import UserFinalBillHeader from "@/components/UserFinalBill/components/UserFinalBillHeader.component";
 import UserFinalBillChooseButtons from "@/components/UserFinalBill/components/UserFinalBillChooseButton.component";
 import {
     UserFinalBillFormBox,
@@ -11,6 +10,7 @@ import {selectCurrentUser} from "@/store/user/user-selector";
 import {useRouter} from "next/router";
 import {setTableUsersStart} from "@/store/user/user-action";
 import {setIsMethodMenu} from "@/store/orderInfo/orderIndo-action";
+import AppHeaderModule from "@/components/AppHeader";
 
 const UserFinalBillMainForm = () => {
     const Router = useRouter();
@@ -57,7 +57,7 @@ const UserFinalBillMainForm = () => {
 
     return(
         <UserFinalBillFormBox>
-            <UserFinalBillHeader />
+            <AppHeaderModule titleText={"Разделить счет"} />
             <UserFinalBillChooseButtons changeFocus={changeFocusOnClick} isSplitOnMenuFocused={isSplitOnMenuFocused} />
 
             { isSplitOnMenuFocused ?

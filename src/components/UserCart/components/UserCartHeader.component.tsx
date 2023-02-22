@@ -6,14 +6,12 @@ import {MenuRestaurantTitle} from "@/components/Menu/Header/styles/Module.style"
 const UserCartHeader = () => {
     const Router = useRouter();
 
-    const { nameOfRestaurant, numberOfTable } = Router.query;
-
 
     return(
         <UserCartHeaderBox
             container
         >
-            <BackButtonComponent pushToUrl={`/${nameOfRestaurant}/table/${numberOfTable}/menu`} />
+            <BackButtonComponent />
             <MenuRestaurantTitle xs={7} item>
                 Ваш заказ
             </MenuRestaurantTitle>
