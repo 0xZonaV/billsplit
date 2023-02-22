@@ -1,38 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![BillSplit](/public/BigLogo.png)
+
+## Made with
+[![Made with TypeScript](https://img.shields.io/badge/TypeScript-4-blue?logo=typescript&logoColor=white)](https://typescriptlang.org "Go to TypeScript homepage")
+[![Made with React](https://img.shields.io/badge/React-17-blue?logo=react&logoColor=white)](https://reactjs.org "Go to React homepage")
+[![styled-somponents - 5](https://img.shields.io/static/v1?label=styled-somponents&message=5&color=%23DB7093&logo=styled-components)](https://styled-components.com/)
+[![Redux-Saga - 1.2.2](https://img.shields.io/static/v1?label=Redux-Saga&message=1.2.2&color=%23999999&logo=Redux-Saga)](https://redux-saga.js.org/)
+[![Built With -  Firebase](https://img.shields.io/static/v1?label=Built+With&message=+Firebase&color=%23999999&logo=Firebase&logoColor=%23FFCA28)](https://firebase.google.com/)
+
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e8957bed-a7c0-4756-aa17-8b9b9464103e/deploy-status)](https://app.netlify.com/sites/bill-split-imct/deploys)
+[![Demo - Live](https://img.shields.io/badge/Demo-Live-2ea44f?logo=Next.js)](https://bill-split-imct.netlify.app/imagine/table/1)
 
 ## Getting Started
+Install npm packages
 
-First, run the development server:
+1. Clone this repo: `git clone https://github.com/netlify-templates/next-netlify-starter.git`
+2. Navigate to the directory and run `npm install`
+3. Run `npm run dev`
+4. Connect to [Netlify](https://url.netlify.com/Bk4UicocL)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## License
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[GNU General Public License v3.0 or later](LICENSE)
 
-You can start editing the page by modifying. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
