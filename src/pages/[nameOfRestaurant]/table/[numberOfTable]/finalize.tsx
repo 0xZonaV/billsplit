@@ -11,8 +11,6 @@ import UserPaymentMethodChoose from "@/components/UserFinalBillPay/components/Us
 import UserSuccessfulPaymentScreen from "@/components/UserFinalBillPay/components/UserSuccesfulPaymnetScreen.component";
 import {useEffect} from "react";
 import {setMainForm} from "@/store/finalizeWindow/finalize-action";
-import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
-import {setTableTotal, setUserTotalEqual, setUserTotalMenu} from "@/store/orderInfo/orderIndo-action";
 
 const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTable}) => {
 
@@ -20,25 +18,6 @@ const FinalizeOrder:NextPage<AppGeneralProps> = ({nameOfRestaurant, numberOfTabl
     const dispatch = useDispatch();
 
     const {agreePopup, amountPopup, choosePaymentMethod, successfulPayment, cardPayment, mainForm} = WindowToRender;
-
-
-    const users = useSelector(selectTableUsers);
-    const currentUser = useSelector(selectCurrentUser);
-
-    useEffect(
-        () => {
-            if (users) {
-                dispatch(setTableTotal(users));
-                dispatch(setUserTotalEqual(users));
-            }
-
-            if (currentUser) {
-                dispatch(setUserTotalMenu(currentUser))
-            }
-
-        },
-        [users, currentUser]
-    );
 
     useEffect(
         () => {

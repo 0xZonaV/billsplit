@@ -5,7 +5,7 @@ import {fetchMenuStart, fetchWaiterStart} from "@/store/menu/menu-action";
 import {useRouter} from "next/router";
 import {checkUserSession, rest} from "@/store/user/user-action";
 import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
-import {setNewUsersList} from "@/store/orderInfo/orderIndo-action";
+import {setNewUsersList, setTableTotal, setUserTotalEqual, setUserTotalMenu} from "@/store/orderInfo/orderIndo-action";
 
 const HeadComponent = () => {
 
@@ -33,7 +33,23 @@ const HeadComponent = () => {
         }
     }
     ,[users, currentUser]
-    )
+    );
+
+    useEffect(
+        () => {
+            if (users) {
+                dispatch(setTableTotal(users));
+                dispatch(setUserTotalEqual(users));
+            }
+
+            if (currentUser) {
+                dispatch(setUserTotalMenu(currentUser))
+            }
+
+        },
+        [users, currentUser]
+    );
+
 
     return(
         <Head>
