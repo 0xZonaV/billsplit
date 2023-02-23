@@ -14,14 +14,14 @@ const TableNumberPageBody:FC<TableNumberPageBodyProps> = ({ tableNumber }) => {
     return(
         <Box sx={{ padding: "5% 10% 0% 10%" }}>
             <TableNumberTitle tableNumber={tableNumber} />
-            <Box sx={{ padding: "5% 3% 5% 3%" }}>
+            <Box sx={{ padding: "5% 3% 0 3%" }}>
                 <TableNumberGuestsTitle>
                     Гости
                 </TableNumberGuestsTitle>
 
                 <TableNumberGuestsMapComponent />
 
-                <Box sx={{ marginTop: "5%" }}>
+                <Box sx={{ marginTop: "13%" }}>
                     <TableNumberGuestsTitle>
                         Ваш официант
                     </TableNumberGuestsTitle>
