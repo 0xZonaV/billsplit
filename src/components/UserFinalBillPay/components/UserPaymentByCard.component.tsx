@@ -9,19 +9,25 @@ import {
 import {Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {setSuccessful} from "@/store/finalizeWindow/finalize-action";
-import {selectIsMethodMenu, selectUserTotalEqual, selectUserTotalMenu} from "@/store/orderInfo/orderInfo-selector";
+import {
+    selectIsMethodMenu,
+    selectTips,
+    selectUserTotalEqual,
+    selectUserTotalMenu
+} from "@/store/orderInfo/orderInfo-selector";
 
 
 
 const UserPaymentByCard = () => {
     const dispatch = useDispatch();
     const isMethodMenu = useSelector(selectIsMethodMenu);
+    const tipsAmount = useSelector(selectTips);
     const totalToPay = () => {
         if (isMethodMenu) {
-            return useSelector(selectUserTotalMenu)
+            return useSelector(selectUserTotalMenu)+tipsAmount
         }
 
-        return useSelector(selectUserTotalEqual)
+        return useSelector(selectUserTotalEqual)+tipsAmount
     }
 
 

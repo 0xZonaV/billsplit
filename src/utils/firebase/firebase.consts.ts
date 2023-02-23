@@ -66,5 +66,27 @@ export const restaurantMenu: MenuItem[] = [
         "name": "Апельсиновый сок ",
         "price": 300,
         "stock": 35
+    },
+    {
+        "calories": "42/0/0/10",
+        "category": "drinks",
+        "description": " ",
+        "grammar": 500,
+        "id": 7,
+        "imgUrl": "/img/cocaCola.jpg",
+        "name": "Coca-Cola",
+        "price": 250,
+        "stock": 25
+    },
+    {
+        "calories": "28/0/0/7",
+        "category": "drinks",
+        "description": " ",
+        "grammar": 500,
+        "id": 8,
+        "imgUrl": "/img/fanta.jpg",
+        "name": "Fanta",
+        "price": 250,
+        "stock": 20,
     }
 ]

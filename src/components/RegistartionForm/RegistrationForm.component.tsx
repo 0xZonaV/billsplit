@@ -1,19 +1,21 @@
 import {Box} from "@mui/system";
 import {GoogleSignInButton, TableNumberIndexPageStyle} from "@/components/TablePage/TableNumberIndexPage.style";
 import GoogleIcon from "../../../public/icons/googleIcon.svg";
-import {googleSignInStart} from "@/store/user/user-action";
+import {checkUserSession, googleSignInStart, rest} from "@/store/user/user-action";
 import {useDispatch} from "react-redux";
 import {FC} from "react";
 
 const RegistrationForm:FC<{ nameOfRestaurant: string, numberOfTable: string}> = ({ numberOfTable, nameOfRestaurant }) => {
 
     const dispatch = useDispatch();
+    const rest: rest = {
+        nameOfRestaurant: nameOfRestaurant as string,
+        tableNum: numberOfTable as string
+    };
 
     const logGoogleUser = async () => {
-        dispatch(googleSignInStart({
-            nameOfRestaurant: nameOfRestaurant as string,
-            tableNum: numberOfTable as string
-        }));
+        dispatch(googleSignInStart(rest));
+        dispatch(checkUserSession(rest));
     }
 
 
