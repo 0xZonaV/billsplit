@@ -2,7 +2,7 @@ import {Box} from "@mui/system";
 import {UserFinalBillTotalCost} from "@/components/UserFinalBill/style/UserFinalBillMainForm.style";
 import {FC} from "react";
 
-const UserFinalBillTotalCostComponent:FC<{ billTotal: number, tips: number }> = ({ billTotal, tips }) => {
+const UserFinalBillTotalCostComponent:FC<{ billTotal: number }> = ({ billTotal }) => {
     return(
         <Box
             sx={{
@@ -24,7 +24,7 @@ const UserFinalBillTotalCostComponent:FC<{ billTotal: number, tips: number }> = 
                     padding: "0 15px 0 0"
                 }}
             >
-                {billTotal + tips}
+                {billTotal}
             </UserFinalBillTotalCost>
         </Box>
     )

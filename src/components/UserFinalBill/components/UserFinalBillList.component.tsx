@@ -23,9 +23,16 @@ const UserFinalBillList: FC<BillListProps> = ({selectedUser}) => {
 
     const billTotalByUserId = (userId: string) => {
         const user = NewUsersTableList.find(element => element.id === userId);
+        if  (userId !== currentUser?.id) {
+            if (user) {
+                return  calcUserTotalMenu(user);
+            }
+
+            return 0
+        }
 
         if (user) {
-            return  calcUserTotalMenu(user);
+            return  calcUserTotalMenu(user)+tipsAmount;
         }
 
         return 0
@@ -72,7 +79,7 @@ const UserFinalBillList: FC<BillListProps> = ({selectedUser}) => {
                 </Table>
             </TableContainer>
 
-            <UserFinalBillTotalCostComponent tips={tipsAmount} billTotal={billTotalByUserId(selectedUser)} />
+            <UserFinalBillTotalCostComponent billTotal={billTotalByUserId(selectedUser)} />
         </UserFinalBillBackground>
     )
 }
