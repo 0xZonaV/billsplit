@@ -1,6 +1,6 @@
 import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {USER_ACTION_TYPES} from "./user-types";
-import {UserData} from "@/utils/firebase/firebase.utils";
+import {UserData} from "@/utils/firebase/firebase.types";
 import {CartItemType} from "@/store/cart/cart-types";
 
 const {

@@ -6,6 +6,7 @@ import {cartReducer, CartState} from "@/store/cart/cart-reducer";
 import {FinalizeWindowType} from "@/store/finalizeWindow/finalize-types";
 import {finalizeWindowsReducer} from "@/store/finalizeWindow/finalize-reducer";
 import {orderInfoReducer, OrderInfoState} from "@/store/orderInfo/orderInfo-reducer";
+import {waiterReducer, WaiterState} from "@/store/waiter/waiter-reducer";
 
 export type RootReducerType = {
     menu: MenuReducerState;
@@ -13,6 +14,7 @@ export type RootReducerType = {
     cart: CartState;
     finalizeWindow: FinalizeWindowType;
     orderInfo: OrderInfoState;
+    waiter: WaiterState;
 }
 
 export const rootReducer =(state: RootReducerType | undefined, action: AnyAction) => {
@@ -27,6 +29,7 @@ export const rootReducer =(state: RootReducerType | undefined, action: AnyAction
                 cart: cartReducer,
                 orderInfo: orderInfoReducer,
                 finalizeWindow: finalizeWindowsReducer,
+                waiter: waiterReducer,
             })
             return combinedReducer(state, action);
         }

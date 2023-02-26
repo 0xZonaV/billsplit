@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setTableUsersStart} from "@/store/user/user-action";
 import {selectCurrentUser, selectTableUsers} from "@/store/user/user-selector";
 import TableNumberGuestsAvatar from "@/components/TablePage/Body/components/TableNumberGuestsAvatar.component";
-import {UserData} from "@/utils/firebase/firebase.utils";
+import {UserData} from "@/utils/firebase/firebase.types";
 
 const TableNumberGuestsMapComponent = () => {
 

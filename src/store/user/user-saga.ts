@@ -2,12 +2,12 @@ import {takeLatest, all, call, put} from 'typed-redux-saga/';
 import {USER_ACTION_TYPES} from "./user-types";
 
 import {
-    AdditionalInformation,
     createUserDocumentFromAuth,
     getCurrentUser, getTableUsers,
     signInWithGooglePopup, updateUserOrder,
     userSignOut,
 } from "@/utils/firebase/firebase.utils";
+import {AdditionalInformation} from "@/utils/firebase/firebase.types";
 import {
     addItemFailed,
     AddItemStart,

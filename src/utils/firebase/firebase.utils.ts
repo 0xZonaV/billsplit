@@ -1,9 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {
+    createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
-    NextOrObserver,
-    onAuthStateChanged,
+    onAuthStateChanged, signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
     User
@@ -20,7 +20,13 @@ import {
 } from "@firebase/firestore";
 import firebase from "firebase/compat";
 import {MenuItem} from "@/store/menu/menu-types";
-import {WaiterData} from "@/utils/firebase/firebase.types";
+import {
+    AdditionalInformation,
+    AdditionalWaiterInformation,
+    UserData,
+    UserOrder,
+    WaiterData
+} from "@/utils/firebase/firebase.types";
 import {CartItemType} from "@/store/cart/cart-types";
 
 const firebaseConfig = {
@@ -47,26 +53,6 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export type AdditionalInformation = {
-    displayName?: string;
-
-};
-
-
-export type UserOrder = {
-    items: CartItemType[];
-}
-
-export type UserData = {
-    displayName: string;
-
-    id: "";
-    email: string;
-    role: string;
-    orderComments: string[];
-    userOrder: UserOrder;
-
-}
 
 export const createUserDocumentFromAuth = async (
     userAuth: User,
@@ -83,8 +69,6 @@ export const createUserDocumentFromAuth = async (
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
         const role = "user"
-
-        // TODO: Add id to user and full item into order
 
         const restaurantMenu = await getRestaurantMenu(nameOfRestaurant);
 
@@ -117,8 +101,6 @@ export const createUserDocumentFromAuth = async (
 }
 
 export const userSignOut = async () => await signOut(auth);
-
-export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => onAuthStateChanged(auth, callback);
 
 export const getCurrentUser = (): Promise<User | null> => {
     return new Promise((resolve, reject) => {
@@ -222,4 +204,64 @@ export const getWaiterInfo  = async (nameOfRestaurant: string): Promise<WaiterDa
     return querySnapshot.docs.map(
         (docSnapshot) => docSnapshot.data() as WaiterData
     );
+}
+
+
+
+
+export const createWaiterDocumentFromAuth = async (
+    waiterAuth: User,
+    nameOfRestaurant: string,
+    additionalInformation = {} as  AdditionalWaiterInformation,
+): Promise<void | QueryDocumentSnapshot<WaiterData>> => {
+    if (!waiterAuth) return;
+
+    const waiterDocRef = doc(db, `/restaurant/${nameOfRestaurant}/staff`, waiterAuth.uid);
+
+
+    const userSnapshot = await getDoc(waiterDocRef);
+
+    if (!userSnapshot.exists()) {
+        const { email } = waiterAuth;
+        const role = "waiter";
+        const id = waiterAuth.uid;
+
+        try {
+            await setDoc(waiterDocRef, {
+                email,
+                role,
+                id,
+                ...additionalInformation
+            });
+        } catch (error) {
+            console.log('Error with creating user ', error )
+        }
+    }
+
+    return userSnapshot as QueryDocumentSnapshot<WaiterData>;
+}
+
+export const createAuthWaiterWithEmailAndPassword = async (email: string, password: string) => {
+    if (!email || !password) return;
+
+    return await createUserWithEmailAndPassword(auth, email, password);
+}
+
+export const signInAuthWaiterWithEmailAndPassword = async (email: string, password: string) => {
+    if (!email || !password) return;
+
+    return await signInWithEmailAndPassword(auth, email, password);
+}
+
+export const getCurrentWaiter = (): Promise<User | null> => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            (userAuth) => {
+                unsubscribe();
+                resolve(userAuth);
+            },
+            reject
+        )
+    })
 }

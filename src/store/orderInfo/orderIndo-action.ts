@@ -1,6 +1,6 @@
 import {ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {ORDER_INFO_ACTION_TYPES} from "@/store/orderInfo/orderInfo-types";
-import {UserData} from "@/utils/firebase/firebase.utils";
+import {UserData} from "@/utils/firebase/firebase.types";
 
 export type SetTableTotal = ActionWithPayload<ORDER_INFO_ACTION_TYPES.SET_TABLE_TOTAL, UserData[]>;
 
