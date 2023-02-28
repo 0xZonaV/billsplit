@@ -10,16 +10,23 @@ import {
     UserPaymentMethodRadioIconCash
 } from "@/components/UserFinalBillPay/style/UserPaymentMethodChoose.style";
 import {Radio} from "@mui/material";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCardPayment, setSuccessful} from "@/store/finalizeWindow/finalize-action";
 import {ChangeEvent, useState} from "react";
+import {sendCashPaymentMethodChosenNotification} from "@/utils/telegram/telegram.utils";
+import {useRouter} from "next/router";
+import {selectCurrentUser} from "@/store/user/user-selector";
 
 const UserPaymentMethodChoose = () => {
 
     const dispatch = useDispatch();
-
+    const Router = useRouter();
+    const currentUser = useSelector(selectCurrentUser);
+    const { numberOfTable } = Router.query;
     const choseMethodOnClick = () => {
         if (chosenMethod === "cash") {
+            // @ts-ignore
+            sendCashPaymentMethodChosenNotification("470239748", numberOfTable as string, currentUser?.displayName )
             dispatch(setSuccessful());
         } else if (chosenMethod === "card") {
             dispatch(setCardPayment());

@@ -15,6 +15,7 @@ const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor}>
+                    <HeadComponent />
                     <Component {...pageProps} />
             </PersistGate>
         </Provider>

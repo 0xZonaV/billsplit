@@ -4,6 +4,7 @@ const nextConfig = {
   optimizeFonts: false,
 }
 
+
 module.exports = nextConfig
 
 module.exports = {
@@ -14,5 +15,8 @@ module.exports = {
     });
 
     return config;
+  },
+  env: {
+    REACT_APP_BOT_TOKEN: process.env.REACT_APP_BOT_TOKEN,
   }
 };

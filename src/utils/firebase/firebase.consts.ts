@@ -1,5 +1,15 @@
 import {MenuItem} from "@/store/menu/menu-types";
 
+export const firebaseConfig = {
+    apiKey: "AIzaSyAO155af5IBhclOn437Q0jQZy-7ho69byM",
+    authDomain: "bill-split-b57f6.firebaseapp.com",
+    projectId: "bill-split-b57f6",
+    storageBucket: "bill-split-b57f6.appspot.com",
+    messagingSenderId: "237496215594",
+    appId: "1:237496215594:web:ad3d64950c50caf4a07b53",
+    measurementId: "G-6NNZVCBKRV"
+};
+
 export const restaurantMenu: MenuItem[] = [
     {
         "calories": "221/10/16/7",

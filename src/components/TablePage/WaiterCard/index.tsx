@@ -10,12 +10,20 @@ import {useState} from "react";
 import {useSelector} from "react-redux";
 import {selectIsWaiterLoading, selectWaitersData} from "@/store/menu/menu-selector";
 import CheckIcon from "../../../../public/icons/checkIcon.svg";
+import {sendCallWaiterNotification} from "@/utils/telegram/telegram.utils";
+import {useRouter} from "next/router";
+import {selectCurrentUser} from "@/store/user/user-selector";
 
 const WaiterCardModule = () => {
 
     const [isButtonPressed, setIsButtonPressed] = useState(false);
+    const Router = useRouter();
+    const currentUser = useSelector(selectCurrentUser);
+    const { numberOfTable } = Router.query;
 
-    const onClick = () => {
+    const callWaiterOnClick = () => {
+        // @ts-ignore
+        sendCallWaiterNotification("470239748", numberOfTable as string, currentUser?.displayName);
         setIsButtonPressed(!isButtonPressed);
     }
 
@@ -24,7 +32,7 @@ const WaiterCardModule = () => {
 
     if (waitersInfo.length > 0) {
 
-        const {firstName, imgUrl} = waitersInfo[0];
+        const {firstName, imgUrl} = waitersInfo[1];
 
         return (
             <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
@@ -36,11 +44,11 @@ const WaiterCardModule = () => {
                         {firstName}
                     </WaiterName>
                     {isButtonPressed ? (
-                        <CallWaiterButtonPressed onClick={onClick}>
+                        <CallWaiterButtonPressed onClick={callWaiterOnClick}>
                             <CheckIcon />
                         </CallWaiterButtonPressed>
                     ) : (
-                        <CallWaiterButton onClick={onClick}>
+                        <CallWaiterButton onClick={callWaiterOnClick}>
                             Позвать
                         </CallWaiterButton>
                     )
