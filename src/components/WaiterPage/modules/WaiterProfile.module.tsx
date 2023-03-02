@@ -1,31 +1,58 @@
-import Image from "next/image";
 import {selectCurrentWaiter} from "@/store/waiter/waiter-selector";
 import {useSelector} from "react-redux";
+import {
+    WaiterProfileBox, WaiterProfileImage, WaiterProfileImageAndTextBox, WaiterProfileInfoBox, WaiterProfileInfoText,
+    WaiterProfilePageBox,
+    WaiterProfileTitle
+} from "@/components/WaiterPage/styles/WaiterProfile.style";
+import {WaiterPageRenderType} from "../../../../@types";
+import {FC} from "react";
+import WaiterPageFooter from "@/components/WaiterPage/components/Footer.component";
 
-const WaiterProfile = () => {
+
+type TableListProps = {
+    waiterPageRender: WaiterPageRenderType,
+    setWaiterPageRender: (newWaiterPageRender :WaiterPageRenderType) => void
+}
+
+const WaiterProfile: FC<TableListProps> = ({waiterPageRender, setWaiterPageRender}) => {
     const currentWaiter = useSelector(selectCurrentWaiter);
 
     const imageToDisplay = () => {
         if (currentWaiter) {
-           return <Image src={currentWaiter?.imgUrl} alt={currentWaiter?.firstName} width={100} height={100}   />
+           return <WaiterProfileImage src={currentWaiter?.imgUrl} alt={currentWaiter?.firstName} width={100} height={100}   />
         }
 
         return <div style={{ backgroundColor: "#FFF", width: "100px", height: "100px" }} />
     }
 
     return(
-        <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ width: "354px", maxWidth: "354px", justifyContent: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h2>Профиль сотрудника</h2>
-                <div style={{ width: "319px", maxWidth: "319px", display: "flex", flexDirection: "row" }}>
+        <WaiterProfileBox>
+            <WaiterProfilePageBox>
+                <WaiterProfileTitle>
+                    Профиль сотрудника
+                </WaiterProfileTitle>
+                <WaiterProfileImageAndTextBox>
                     {imageToDisplay()}
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        Имя: {currentWaiter?.firstName}
-                    </div>
+                    <WaiterProfileInfoBox>
+                       <WaiterProfileInfoText>
+                           Имя: {currentWaiter?.firstName}
+                       </WaiterProfileInfoText>
+                        <WaiterProfileInfoText>
+                            Фамилия: {currentWaiter?.lastName}
+                        </WaiterProfileInfoText>
+                        <WaiterProfileInfoText>
+                            Должность: официант
+                        </WaiterProfileInfoText>
+                        <WaiterProfileInfoText>
+                            График: {currentWaiter?.schedule}
+                        </WaiterProfileInfoText>
+                    </WaiterProfileInfoBox>
 
-                </div>
-            </div>
-        </div>
+                </WaiterProfileImageAndTextBox>
+            </WaiterProfilePageBox>
+            <WaiterPageFooter waiterPageRender={waiterPageRender} setWaiterPageRender={setWaiterPageRender} />
+        </WaiterProfileBox>
     )
 }
 

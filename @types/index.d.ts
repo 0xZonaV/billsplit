@@ -8,3 +8,9 @@ export type CategoryRender = {
     pizza: boolean;
     drinks: boolean;
 }
+
+export type WaiterPageRenderType = {
+    profile: boolean,
+    notification: boolean,
+    tableList: boolean,
+}
