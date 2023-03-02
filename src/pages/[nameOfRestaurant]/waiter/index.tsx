@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentWaiter} from "@/store/waiter/waiter-selector";
 import {useEffect, useState} from "react";
 import {checkWaiterSession} from "@/store/waiter/waiter-action";
-import {useRouter} from "next/router";
 import WaiterProfile from "@/components/WaiterPage/modules/WaiterProfile.module";
 import SignInForm from "@/components/WaiterPage/modules/WaiterAuthForm.module";
 import {NextPage} from "next";
@@ -11,10 +10,9 @@ import {WaiterPageRenderType} from "../../../../@types";
 import WaiterTableListModule from "@/components/WaiterPage/modules/WaiterTableList.module";
 import WaiterNotificationsModule from "@/components/WaiterPage/modules/WaiterNotifications.module";
 
-const WaiterIndexPage: NextPage<{ nameOfRestaurant: string | string[] | undefined }> = () => {
+const WaiterIndexPage: NextPage<{ nameOfRestaurant: string | string[] | undefined }> = ({ nameOfRestaurant }) => {
     const currentWaiter = useSelector(selectCurrentWaiter);
     const dispatch = useDispatch();
-    const Router = useRouter();
 
     const InitialWaiterPageRender: WaiterPageRenderType = {
         profile: true,
@@ -23,7 +21,6 @@ const WaiterIndexPage: NextPage<{ nameOfRestaurant: string | string[] | undefine
     }
 
     const [waiterPageRender, setWaiterPageRender] = useState(InitialWaiterPageRender);
-    const { nameOfRestaurant } = Router.query
 
     useEffect(
         () => {

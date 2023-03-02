@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import {Typography} from "@mui/material";
+import {Table, TableCell, TableContainer, Typography} from "@mui/material";
 
 export const WaiterProfileImage = styled(Image)`
   border-radius: 50%;
@@ -71,4 +71,72 @@ export const WaiterFooterButtonsBox = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 45px 0 45px;
+`
+
+export const WaiterWorkDaysTableContainer = styled(TableContainer)`
+  && {
+    width: 353px;
+    height: 419px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    margin-top: 35px;
+    justify-content: center;
+    display: flex;
+    align-items: flex-start;
+    max-height: 419px;
+  }
+`
+
+export const WaiterWorkDaysTable = styled(Table)`
+  && {
+    table-layout: fixed;
+    overflow: hidden;
+    justify-content: center;
+  }
+`
+
+export const WaiterWorkDaysHeaderCell = styled(TableCell)`
+  && {
+    font-family: 'Buyan';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: center;
+    color: #33394B;
+    padding: 16px 5px 16px 5px;
+
+    border-bottom: 3px dashed #EBEFF3;
+  }
+`
+
+export const WaiterWorkDaysBodyCell = styled(TableCell)`
+  && {
+    text-align: center;
+    padding: 16px 5px 16px 5px;
+    font-family: 'Doloman Pavljenko';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 19px;
+    color: #000000;
+
+    border-bottom: 3px dashed #EBEFF3;
+  }
+`
+
+export const WaiterWorkDaysDateCell = styled(TableCell)`
+  && {
+    font-family: 'Doloman Pavljenko';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #B84200;
+    width: 109px;
+    border-bottom: 3px dashed #EBEFF3;
+    padding: 5px;
+  }
 `

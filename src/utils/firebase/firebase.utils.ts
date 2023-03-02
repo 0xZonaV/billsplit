@@ -24,7 +24,7 @@ import {
     AdditionalWaiterInformation,
     UserData,
     UserOrder,
-    WaiterData
+    WaiterData, WorkDaysType
 } from "@/utils/firebase/firebase.types";
 import {CartItemType} from "@/store/cart/cart-types";
 import {firebaseConfig} from "@/utils/firebase/firebase.consts";
@@ -218,12 +218,21 @@ export const createWaiterDocumentFromAuth = async (
         const { email } = waiterAuth;
         const role = "waiter";
         const id = waiterAuth.uid;
+        const workDays:WorkDaysType[] = [
+            {
+                date: "17.02.23",
+                time: "(10:00-22:00)",
+                tips: 2500,
+                rate: 1500,
+            }
+        ];
 
         try {
             await setDoc(waiterDocRef, {
                 email,
                 role,
                 id,
+                workDays,
                 ...additionalInformation
             });
         } catch (error) {

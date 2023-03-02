@@ -30,33 +30,44 @@ const WaiterCardModule = () => {
     const waitersInfo = useSelector(selectWaitersData);
     const isWaitersLoading = useSelector(selectIsWaiterLoading);
 
+
+
     if (waitersInfo.length > 0) {
+        const TableWaiter = waitersInfo.find((element) => element.id === 0);
 
-        const {firstName, imgUrl} = waitersInfo[1];
+        if (TableWaiter) {
+            const {firstName, imgUrl} = TableWaiter;
 
-        return (
-            <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
-                <WaiterCardBox>
-                    <TableNumberGuestsAvatarEllipse>
-                        <WaiterAvatarImage src={imgUrl} alt={firstName} width="61" height="61"/>
-                    </TableNumberGuestsAvatarEllipse>
-                    <WaiterName>
-                        {firstName}
-                    </WaiterName>
-                    {isButtonPressed ? (
-                        <CallWaiterButtonPressed onClick={callWaiterOnClick}>
-                            <CheckIcon />
-                        </CallWaiterButtonPressed>
-                    ) : (
-                        <CallWaiterButton onClick={callWaiterOnClick}>
-                            Позвать
-                        </CallWaiterButton>
-                    )
-                    }
+            return (
+                <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
+                    <WaiterCardBox>
+                        <TableNumberGuestsAvatarEllipse>
+                            <WaiterAvatarImage src={imgUrl} alt={firstName} width="61" height="61"/>
+                        </TableNumberGuestsAvatarEllipse>
+                        <WaiterName>
+                            {firstName}
+                        </WaiterName>
+                        {isButtonPressed ? (
+                            <CallWaiterButtonPressed onClick={callWaiterOnClick}>
+                                <CheckIcon/>
+                            </CallWaiterButtonPressed>
+                        ) : (
+                            <CallWaiterButton onClick={callWaiterOnClick}>
+                                Позвать
+                            </CallWaiterButton>
+                        )
+                        }
 
-                </WaiterCardBox>
-            </Box>
-        )
+                    </WaiterCardBox>
+                </Box>
+            )
+        } else {
+            return (
+                <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>
+                    <WaiterCardBox />
+                </Box>
+            )
+        }
     } else {
         return (
             <Box sx={{padding: "3% 0% 0% 8%", width: "90.9vw", height: "15.65vh"}}>

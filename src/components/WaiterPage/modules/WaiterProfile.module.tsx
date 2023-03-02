@@ -1,13 +1,13 @@
-import {selectCurrentWaiter} from "@/store/waiter/waiter-selector";
-import {useSelector} from "react-redux";
 import {
-    WaiterProfileBox, WaiterProfileImage, WaiterProfileImageAndTextBox, WaiterProfileInfoBox, WaiterProfileInfoText,
+    WaiterProfileBox,
     WaiterProfilePageBox,
-    WaiterProfileTitle
+    WaiterProfileTitle,
 } from "@/components/WaiterPage/styles/WaiterProfile.style";
 import {WaiterPageRenderType} from "../../../../@types";
 import {FC} from "react";
 import WaiterPageFooter from "@/components/WaiterPage/components/Footer.component";
+import WaiterProfileInfoComponent from "@/components/WaiterPage/components/WaiterProfileInfo.component";
+import WorkDaysTableComponent from "@/components/WaiterPage/components/WorkDaysTable.component";
 
 
 type TableListProps = {
@@ -16,40 +16,14 @@ type TableListProps = {
 }
 
 const WaiterProfile: FC<TableListProps> = ({waiterPageRender, setWaiterPageRender}) => {
-    const currentWaiter = useSelector(selectCurrentWaiter);
-
-    const imageToDisplay = () => {
-        if (currentWaiter) {
-           return <WaiterProfileImage src={currentWaiter?.imgUrl} alt={currentWaiter?.firstName} width={100} height={100}   />
-        }
-
-        return <div style={{ backgroundColor: "#FFF", width: "100px", height: "100px" }} />
-    }
-
     return(
         <WaiterProfileBox>
             <WaiterProfilePageBox>
                 <WaiterProfileTitle>
                     Профиль сотрудника
                 </WaiterProfileTitle>
-                <WaiterProfileImageAndTextBox>
-                    {imageToDisplay()}
-                    <WaiterProfileInfoBox>
-                       <WaiterProfileInfoText>
-                           Имя: {currentWaiter?.firstName}
-                       </WaiterProfileInfoText>
-                        <WaiterProfileInfoText>
-                            Фамилия: {currentWaiter?.lastName}
-                        </WaiterProfileInfoText>
-                        <WaiterProfileInfoText>
-                            Должность: официант
-                        </WaiterProfileInfoText>
-                        <WaiterProfileInfoText>
-                            График: {currentWaiter?.schedule}
-                        </WaiterProfileInfoText>
-                    </WaiterProfileInfoBox>
-
-                </WaiterProfileImageAndTextBox>
+                <WaiterProfileInfoComponent />
+                <WorkDaysTableComponent />
             </WaiterProfilePageBox>
             <WaiterPageFooter waiterPageRender={waiterPageRender} setWaiterPageRender={setWaiterPageRender} />
         </WaiterProfileBox>

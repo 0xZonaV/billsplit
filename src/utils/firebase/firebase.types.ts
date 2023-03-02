@@ -8,6 +8,7 @@ export type WaiterData = {
     middleName: string;
     role: string;
     schedule: string;
+    workDays: WorkDaysType[];
 }
 
 export type AdditionalInformation = {
@@ -40,3 +41,9 @@ export type UserData = {
 
 }
 
+export type WorkDaysType = {
+    date: string,
+    time: string,
+    tips: number,
+    rate: number,
+}
