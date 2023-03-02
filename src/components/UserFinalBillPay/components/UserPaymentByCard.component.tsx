@@ -40,7 +40,7 @@ const UserPaymentByCard = () => {
         <div style={{ display: "flex", justifyContent: "center" }}>
             <UserPaymentByCardBox>
                 <UserPaymentByCardTitle>
-                    Добавить банковскую карту
+                    Оплатить картой
                 </UserPaymentByCardTitle>
 
                 <UserPaymentByCardForm>

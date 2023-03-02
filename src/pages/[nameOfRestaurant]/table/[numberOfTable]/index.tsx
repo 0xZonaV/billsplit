@@ -9,10 +9,15 @@ import RegistrationForm from "@/components/RegistartionForm/RegistrationForm.com
 import WaiterCardModule from "@/components/TablePage/WaiterCard";
 import ToMenuButton from "@/components/TablePage/Buttons/ToMenuButton.component";
 import ToFinalizeButton from "@/components/TablePage/Buttons/ToFinalizeButton.component";
+import HowToButton from "@/components/TablePage/Buttons/HowToButton.component";
+import {useState} from "react";
+import HowToModule from "@/components/HowTo";
 
 const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaurant}) => {
 
     const user = useSelector(selectCurrentUser);
+
+    const [isHowToRender, setIsHowToRendered] = useState(false);
 
     // const logOut = () => {
     //     dispatch(signOutStart());
@@ -23,15 +28,21 @@ const TableIndexPage: NextPage<AppGeneralProps> = ({numberOfTable, nameOfRestaur
             <RegistrationForm nameOfRestaurant={nameOfRestaurant as string} numberOfTable={numberOfTable as string} />
         )
     } else {
-        return (
-            <>
-                <TableNumberHeader restaurantName={nameOfRestaurant as string} />
-                <TableNumberPageBody tableNumber={numberOfTable as string} />
-                <WaiterCardModule />
-                <ToFinalizeButton />
-                <ToMenuButton />
-            </>
-        )
+
+        if (isHowToRender) {
+            return <HowToModule setIsHowToRendered={setIsHowToRendered} />
+        } else {
+            return (
+                <>
+                    <TableNumberHeader restaurantName={nameOfRestaurant as string}/>
+                    <TableNumberPageBody tableNumber={numberOfTable as string}/>
+                    <WaiterCardModule/>
+                    <HowToButton setIsHowToRendered={setIsHowToRendered} />
+                    <ToFinalizeButton/>
+                    <ToMenuButton/>
+                </>
+            )
+        }
     }
 
 }
