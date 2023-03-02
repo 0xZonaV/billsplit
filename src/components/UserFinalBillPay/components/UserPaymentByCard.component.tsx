@@ -15,6 +15,9 @@ import {
     selectUserTotalEqual,
     selectUserTotalMenu
 } from "@/store/orderInfo/orderInfo-selector";
+import {sendCardPaymentMethodChosenNotification} from "@/utils/telegram/telegram.utils";
+import {useRouter} from "next/router";
+import {selectCurrentUser} from "@/store/user/user-selector";
 
 
 
@@ -22,6 +25,10 @@ const UserPaymentByCard = () => {
     const dispatch = useDispatch();
     const isMethodMenu = useSelector(selectIsMethodMenu);
     const tipsAmount = useSelector(selectTips);
+    const Router = useRouter();
+    const currentUser = useSelector(selectCurrentUser);
+    const { numberOfTable } = Router.query;
+
     const totalToPay = () => {
         if (isMethodMenu) {
             return useSelector(selectUserTotalMenu)+tipsAmount
@@ -32,7 +39,7 @@ const UserPaymentByCard = () => {
 
 
     const onClick = () => {
-
+        sendCardPaymentMethodChosenNotification("470239748", numberOfTable as string, currentUser?.displayName as string);
         dispatch(setSuccessful());
     }
 
