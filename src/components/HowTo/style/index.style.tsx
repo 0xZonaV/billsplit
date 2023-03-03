@@ -11,7 +11,7 @@ export const HowToModuleBox = styled.div`
 `
 
 export const HowToVisibleBox = styled.div`
-  height: 750px;
+  height: 88.98%;
   width: 100%;
 `
 
@@ -53,8 +53,7 @@ export const HowToImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position:absolute;
-  bottom:0;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
