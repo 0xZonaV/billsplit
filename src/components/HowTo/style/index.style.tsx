@@ -20,6 +20,9 @@ export const HowToUpperBox = styled.div`
   background: linear-gradient(122.11deg, #1F5F5B 0%, #3DAC5E 109.42%);
   border-radius: 29px 29px 0 0;
   padding: 27px 27px 0 27px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
   position: relative;
 `
 export const HowToBottomBox = styled.div`
