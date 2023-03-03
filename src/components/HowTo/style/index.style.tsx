@@ -11,7 +11,7 @@ export const HowToModuleBox = styled.div`
 `
 
 export const HowToVisibleBox = styled.div`
-  height: 88.98%;
+  height: 750px;
   width: 100%;
 `
 
