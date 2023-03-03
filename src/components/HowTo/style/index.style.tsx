@@ -58,6 +58,7 @@ export const HowToImage = styled.div`
   margin-right: auto;
   left: 0;
   right: 0;
+  overflow: visible;
 `
 
 export const HowToTitle = styled.div`
