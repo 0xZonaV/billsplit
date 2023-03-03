@@ -12,11 +12,12 @@ export const HowToModuleBox = styled.div`
 
 export const HowToVisibleBox = styled.div`
   height: 88.98%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `
 
 export const HowToUpperBox = styled.div`
-  height: 50%;
   background: linear-gradient(122.11deg, #1F5F5B 0%, #3DAC5E 109.42%);
   border-radius: 29px 29px 0 0;
   padding: 27px 27px 0 27px;
